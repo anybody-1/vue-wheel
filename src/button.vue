@@ -46,14 +46,14 @@
         &:focus {
             outline: none;
         }
-        > .icon {
+        > .g-icon {
             order: 1; margin-right: .1em;
         }
         > .content {
             order: 2;
         }
         &.icon-right {
-            > .icon {
+            > .g-icon {
                 order: 2;
                 margin-left: .1em;
                 margin-right: 0;
