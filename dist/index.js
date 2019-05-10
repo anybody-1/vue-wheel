@@ -1,13 +1,313 @@
-parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"wFXB":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e={props:["name"]};exports.default=e;
-(function(){var e=exports.default||module.exports;"function"==typeof e&&(e=e.options),Object.assign(e,{render:function(){var e=this.$createElement,t=this._self._c||e;return t("svg",{staticClass:"g-icon"},[t("use")])},staticRenderFns:[],_compiled:!0,_scopeId:null,functional:void 0});})();
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  var error;
+  for (var i = 0; i < entry.length; i++) {
+    try {
+      newRequire(entry[i]);
+    } catch (e) {
+      // Save first error but execute all entries
+      if (!error) {
+        error = e;
+      }
+    }
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === "object" && typeof module !== "undefined") {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  parcelRequire = newRequire;
+
+  if (error) {
+    // throw error from earlier, _after updating parcelRequire_
+    throw error;
+  }
+
+  return newRequire;
+})({"wFXB":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+var _default = {
+  props: ['name']
+};
+exports.default = _default;
+        var $422f93 = exports.default || module.exports;
+      
+      if (typeof $422f93 === 'function') {
+        $422f93 = $422f93.options;
+      }
+    
+        /* template */
+        Object.assign($422f93, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"g-icon"},[_c('use',{attrs:{"xlink:href":("#i-" + _vm.name)}})])}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
 },{}],"iM1m":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("./icon"));function t(e){return e&&e.__esModule?e:{default:e}}var o={components:{"g-icon":e.default},props:{icon:{},loading:{type:Boolean,default:!1},iconPosition:{type:String,default:"left",validator:function(e){return"left"===e||"right"===e}}}};exports.default=o;
-(function(){var t=exports.default||module.exports;"function"==typeof t&&(t=t.options),Object.assign(t,{render:function(){var t=this,n=t.$createElement,i=t._self._c||n;return i("button",{staticClass:"g-button",class:[t.iconPosition?"icon-"+t.iconPosition:"icon-left"],on:{click:function(n){return t.$emit("click")}}},[t.loading?i("g-icon",{staticClass:"loading icon",attrs:{name:"loading"}}):t._e(),t._v(" "),t.icon&&!t.loading?i("g-icon",{staticClass:"icon",attrs:{name:t.icon}}):t._e(),t._v(" "),i("div",{staticClass:"content"},[t._t("default")],2)],1)},staticRenderFns:[],_compiled:!0,_scopeId:null,functional:void 0});})();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _icon = _interopRequireDefault(require("./icon"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  components: {
+    'g-icon': _icon.default
+  },
+  props: {
+    icon: {},
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator: function validator(value) {
+        return value === 'left' || value === 'right';
+      }
+    }
+  }
+};
+exports.default = _default;
+        var $c2968b = exports.default || module.exports;
+      
+      if (typeof $c2968b === 'function') {
+        $c2968b = $c2968b.options;
+      }
+    
+        /* template */
+        Object.assign($c2968b, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"g-button",class:[!_vm.iconPosition?'icon-left':("icon-" + _vm.iconPosition)],on:{"click":function($event){return _vm.$emit('click')}}},[(_vm.loading)?_c('g-icon',{staticClass:"loading icon",attrs:{"name":"loading"}}):_vm._e(),_vm._v(" "),(_vm.icon&&!_vm.loading)?_c('g-icon',{staticClass:"icon",attrs:{"name":_vm.icon}}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"content"},[_vm._t("default")],2)],1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
 },{"./icon":"wFXB"}],"h0wh":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var t={mounted:function(){var t=!0,e=!1,o=void 0;try{for(var r,n=this.$el.children[Symbol.iterator]();!(t=(r=n.next()).done);t=!0){var a=r.value.nodeName.toLowerCase();"button"!==a&&console.warn("g-button-group 的子元素应该全是 g-button ,但是你写的时 ".concat(a))}}catch(l){e=!0,o=l}finally{try{t||null==n.return||n.return()}finally{if(e)throw o}}}};exports.default=t;
-(function(){var t=exports.default||module.exports;"function"==typeof t&&(t=t.options),Object.assign(t,{render:function(){var t=this.$createElement;return(this._self._c||t)("div",{staticClass:"g-button-group"},[this._t("default")],2)},staticRenderFns:[],_compiled:!0,_scopeId:null,functional:void 0});})();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+var _default = {
+  mounted: function mounted() {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = this.$el.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var node = _step.value;
+        var name = node.nodeName.toLowerCase();
+
+        if (name !== 'button') {
+          console.warn("g-button-group \u7684\u5B50\u5143\u7D20\u5E94\u8BE5\u5168\u662F g-button ,\u4F46\u662F\u4F60\u5199\u7684\u65F6 ".concat(name));
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  }
+};
+exports.default = _default;
+        var $717237 = exports.default || module.exports;
+      
+      if (typeof $717237 === 'function') {
+        $717237 = $717237.options;
+      }
+    
+        /* template */
+        Object.assign($717237, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"g-button-group"},[_vm._t("default")],2)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
 },{}],"Focm":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"Button",{enumerable:!0,get:function(){return e.default}}),Object.defineProperty(exports,"ButtonGroup",{enumerable:!0,get:function(){return t.default}}),Object.defineProperty(exports,"Icon",{enumerable:!0,get:function(){return r.default}});var e=u(require("./src/button")),t=u(require("./src/button-group")),r=u(require("./src/icon"));function u(e){return e&&e.__esModule?e:{default:e}}
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _button.default;
+  }
+});
+Object.defineProperty(exports, "ButtonGroup", {
+  enumerable: true,
+  get: function () {
+    return _buttonGroup.default;
+  }
+});
+Object.defineProperty(exports, "Icon", {
+  enumerable: true,
+  get: function () {
+    return _icon.default;
+  }
+});
+
+var _button = _interopRequireDefault(require("./src/button"));
+
+var _buttonGroup = _interopRequireDefault(require("./src/button-group"));
+
+var _icon = _interopRequireDefault(require("./src/icon"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 },{"./src/button":"iM1m","./src/button-group":"h0wh","./src/icon":"wFXB"}]},{},["Focm"], null)
 //# sourceMappingURL=/index.js.map
