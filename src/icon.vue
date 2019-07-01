@@ -2,7 +2,7 @@
     <svg class="g-icon"><use :xlink:href="`#i-${name}`"></use></svg>
 </template>
 <script>
-import './icon'
+import './svg'
 export default {
     props: ['name']
 }
