@@ -13,15 +13,16 @@ Vue.component("g-button-group", ButtonGroup)
 new Vue({
     el: '#app',
     data: {
-        loading1: false
+        loading1: false,
+        message: '其他'
     },
-    created(){
-        setTimeout(() => {
-            let event = new Event('change')
-            let inputElement = this.$el.querySelector('input')
-            inputElement.dispatchEvent(event)
-        },3000)
-    },
+    // created(){
+    //     setTimeout(() => {
+    //         let event = new Event('change')
+    //         let inputElement = this.$el.querySelector('input')
+    //         inputElement.dispatchEvent(event)
+    //     },3000)
+    // },
     methods: {
         changeE(e){
             console.log(e)

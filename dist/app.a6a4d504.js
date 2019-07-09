@@ -12800,16 +12800,16 @@ exports.default = _default;
         domProps: { value: _vm.value },
         on: {
           change: function($event) {
-            return _vm.$emit("change", $event)
+            return _vm.$emit("change", $event.target.value)
           },
           focus: function($event) {
-            return _vm.$emit("focus", $event)
+            return _vm.$emit("focus", $event.target.value)
           },
           input: function($event) {
-            return _vm.$emit("input", $event)
+            return _vm.$emit("input", $event.target.value)
           },
           blur: function($event) {
-            return _vm.$emit("blur", $event)
+            return _vm.$emit("blur", $event.target.value)
           }
         }
       }),
@@ -12886,19 +12886,16 @@ _vue.default.component("g-button-group", _buttonGroup.default);
 new _vue.default({
   el: '#app',
   data: {
-    loading1: false
+    loading1: false,
+    message: '其他'
   },
-  created: function created() {
-    var _this = this;
-
-    setTimeout(function () {
-      var event = new Event('change');
-
-      var inputElement = _this.$el.querySelector('input');
-
-      inputElement.dispatchEvent(event);
-    }, 3000);
-  },
+  // created(){
+  //     setTimeout(() => {
+  //         let event = new Event('change')
+  //         let inputElement = this.$el.querySelector('input')
+  //         inputElement.dispatchEvent(event)
+  //     },3000)
+  // },
   methods: {
     changeE: function changeE(e) {
       console.log(e);

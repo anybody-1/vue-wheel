@@ -75,9 +75,10 @@ const expect = chai.expect;
                 vm.$on(eName, callback)
                 //触发input的change/input/focus/blur事件
                 let event = new Event(eName)
+                Object.defineProperty(event,'target', {value: {value: 'hi'}, enumerable: true})
                 let inputElement = vm.$el.querySelector('input')
                 inputElement.dispatchEvent(event)
-                expect(callback).to.have.been.calledWith(event)
+                expect(callback).to.have.been.calledWith('hi')
              })
          })
      })
