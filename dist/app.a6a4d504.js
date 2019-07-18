@@ -12877,6 +12877,12 @@ var _default = {
   props: {
     gutter: {
       type: [String, Number]
+    },
+    align: {
+      type: String,
+      validator: function validator(value) {
+        return ['left', 'center', 'right'].includes(value);
+      }
     }
   },
   computed: {
@@ -13212,7 +13218,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52771" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56930" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

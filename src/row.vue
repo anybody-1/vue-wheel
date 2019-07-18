@@ -9,6 +9,12 @@ export default {
     props: {
         gutter: {
             type: [String,Number]
+        },
+        align: {
+            type:String,
+            validator(value){
+                return ['left','center','right'].includes(value)
+            }
         }
     },
     computed: {
