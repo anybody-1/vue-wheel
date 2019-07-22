@@ -12988,7 +12988,7 @@ var validator = function validator(value) {
   var keys = Object.keys(value);
   var valid = true;
   keys.forEach(function (key) {
-    if (!['align', 'span'].includes(key)) {
+    if (!['offset', 'span'].includes(key)) {
       valid = false;
     }
   });
@@ -13026,6 +13026,26 @@ var _default = {
       gutter: 0
     };
   },
+  methods: {
+    analiysis: function analiysis(obj) {
+      var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var array = [];
+
+      if (!obj) {
+        return [];
+      }
+
+      if (obj.span) {
+        array.push("col-".concat(str).concat(obj.span));
+      }
+
+      if (obj.offset) {
+        array.push("offset-".concat(str).concat(obj.offset));
+      }
+
+      return array;
+    }
+  },
   computed: {
     colClass: function colClass() {
       var span = this.span,
@@ -13034,7 +13054,11 @@ var _default = {
           narrowPc = this.narrowPc,
           pc = this.pc,
           widePc = this.widePc;
-      return [span && "col-".concat(span), offset && "offset-".concat(offset)].concat(_toConsumableArray(ipad ? ["col-ipad-".concat(ipad.span)] : []), _toConsumableArray(narrowPc ? ["col-narrow-pc-".concat(narrowPc.span)] : []), _toConsumableArray(pc ? ["col-pc-".concat(pc.span)] : []), _toConsumableArray(widePc ? ["col-wide-pc-".concat(widePc.span)] : []));
+      var analiysis = this.analiysis;
+      return [].concat(_toConsumableArray(analiysis({
+        span: span,
+        offset: offset
+      })), _toConsumableArray(analiysis(ipad, 'ipad-')), _toConsumableArray(analiysis(narrowPc, 'narrow-pc-')), _toConsumableArray(analiysis(pc, 'pc-')), _toConsumableArray(analiysis(widePc, 'widePc-')));
     },
     colStyle: function colStyle() {
       return {
@@ -13265,7 +13289,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63096" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50999" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
