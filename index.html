@@ -1,56 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>轮子</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      html {
-        --button-height: 32px;
-        --font-size: 14px;
-        --button-background: white;
-        --button-active-background: #eee;
-        --border-radius: 4px;
-        --color: #333;
-        --border-color: #999;
-        --border-color-hover: #666;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>轮子</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      #app {
-        margin: 20px;
-      }
+    html {
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-background: white;
+      --button-active-background: #eee;
+      --border-radius: 4px;
+      --color: #333;
+      --border-color: #999;
+      --border-color-hover: #666;
+    }
 
-      body {
-        font-size: var(--font-size);
-      }
+    #app {
+      margin: 20px;
+    }
 
-      .icon {
-        width: 1em;
-        height: 1em;
-        vertical-align: -0.15em;
-        fill: currentColor;
-        overflow: hidden;
-      }
+    body {
+      font-size: var(--font-size);
+    }
 
-      .box {
-        margin: 20px;
-      }
-    </style>
-  </head>
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
 
-  <body>
-    <div id="app">
-      <g-row gutter="20">
+    .box {
+      margin: 20px;
+    }
+  </style>
+  <style>
+    .demo {
+      background-color: #666;
+      border: 1px solid red;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <g-row>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+      <g-col span='24' :narrow-pc='{span:8}'>
+        <div class="demo"></div>
+      </g-col>
+    </g-row>
+    <!-- <g-row gutter="20">
         <g-col
           span="24"
           :ipad="{span:8}"
@@ -91,8 +117,9 @@
         <g-input v-model="message"></g-input>
         <span>{{ message }}</span>
         <button @click="message+=1">+1</button>
-      </div>
-    </div>
-    <script src="./src/app.js"></script>
-  </body>
+      </div> -->
+  </div>
+  <script src="./src/app.js"></script>
+</body>
+
 </html>

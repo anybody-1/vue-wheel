@@ -1,55 +1,95 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>轮子</title>
-    <style>* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      html {
-        --button-height: 32px;
-        --font-size: 14px;
-        --button-background: white;
-        --button-active-background: #eee;
-        --border-radius: 4px;
-        --color: #333;
-        --border-color: #999;
-        --border-color-hover: #666;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>轮子</title>
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      #app {
-        margin: 20px;
-      }
+    html {
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-background: white;
+      --button-active-background: #eee;
+      --border-radius: 4px;
+      --color: #333;
+      --border-color: #999;
+      --border-color-hover: #666;
+    }
 
-      body {
-        font-size: var(--font-size);
-      }
+    #app {
+      margin: 20px;
+    }
 
-      .icon {
-        width: 1em;
-        height: 1em;
-        vertical-align: -0.15em;
-        fill: currentColor;
-        overflow: hidden;
-      }
+    body {
+      font-size: var(--font-size);
+    }
 
-      .box {
-        margin: 20px;
-      }</style>
-  <link rel="stylesheet" href="/app.a6a4d504.css"></head>
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
 
-  <body>
-    <div id="app">
-      <g-row gutter="20">
-        <g-col span="24" :ipad="{span:8}" :narrow-pc="{span:4}" :pc="{span:2}" :wide-pc="{span:1}">1</g-col>
-        <g-col span="24" :ipad="{span:16}" :narrow-pc="{span:20}" :pc="{span:22}" :wide-pc="{span:1}">2</g-col>
+    .box {
+      margin: 20px;
+    }</style>
+  <style>.demo {
+      background-color: #666;
+      border: 1px solid red;
+      height: 100px;
+    }</style>
+<link rel="stylesheet" href="/app.a6a4d504.css"></head>
+
+<body>
+  <div id="app">
+    <g-row>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+      <g-col span="24" :narrow-pc="{span:8}">
+        <div class="demo"></div>
+      </g-col>
+    </g-row>
+    <!-- <g-row gutter="20">
+        <g-col
+          span="24"
+          :ipad="{span:8}"
+          :narrow-pc="{span:4}"
+          :pc="{span:2}"
+          :wide-pc="{span:1}"
+          >1</g-col
+        >
+        <g-col
+          span="24"
+          :ipad="{span:16}"
+          :narrow-pc="{span:20}"
+          :pc="{span:22}"
+          :wide-pc="{span:1}"
+          >2</g-col
+        >
       </g-row>
-      <hr>
+      <hr />
       <div style="margin-bottom: 20px;">
         <g-button icon="settings">设置</g-button>
         <g-button icon="settings" icon-position="right">设置</g-button>
@@ -62,8 +102,8 @@
       </div>
       <div class="box">
         <g-input value="张三"></g-input>
-        <g-input value="王五" disabled=""></g-input>
-        <g-input value="赵六" readonly=""></g-input>
+        <g-input value="王五" disabled></g-input>
+        <g-input value="赵六" readonly></g-input>
       </div>
       <div class="box">
         <g-input value="陈七" error="姓名书写错误" @change="changeE"></g-input>
@@ -72,8 +112,9 @@
         <g-input v-model="message"></g-input>
         <span>{{ message }}</span>
         <button @click="message+=1">+1</button>
-      </div>
-    </div>
-    <script src="/app.a6a4d504.js"></script>
-  </body>
+      </div> -->
+  </div>
+  <script src="/app.a6a4d504.js"></script>
+</body>
+
 </html>
