@@ -69,7 +69,7 @@ export default {
         ...analiysis(ipad, 'ipad-'),
         ...analiysis(narrowPc, 'narrow-pc-'),
         ...analiysis(pc, 'pc-'),
-        ...analiysis(widePc, 'widePc-')
+        ...analiysis(widePc, 'wide-pc-')
       ]
     },
     colStyle() {
