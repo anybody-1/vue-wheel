@@ -13058,7 +13058,7 @@ var _default = {
       return [].concat(_toConsumableArray(analiysis({
         span: span,
         offset: offset
-      })), _toConsumableArray(analiysis(ipad, 'ipad-')), _toConsumableArray(analiysis(narrowPc, 'narrow-pc-')), _toConsumableArray(analiysis(pc, 'pc-')), _toConsumableArray(analiysis(widePc, 'widePc-')));
+      })), _toConsumableArray(analiysis(ipad, 'ipad-')), _toConsumableArray(analiysis(narrowPc, 'narrow-pc-')), _toConsumableArray(analiysis(pc, 'pc-')), _toConsumableArray(analiysis(widePc, 'wide-pc-')));
     },
     colStyle: function colStyle() {
       return {
@@ -13289,7 +13289,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50999" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62777" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
