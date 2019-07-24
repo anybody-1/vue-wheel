@@ -858,7 +858,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
 }
 .layout.hasSider[data-v-04e7ec] {
   flex-direction: row;
