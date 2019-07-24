@@ -1,15 +1,12 @@
 <template>
-  <div class="content">
+  <div class="header">
     <slot></slot>
   </div>
 </template>
 <script>
-export default {
-  name: 'GuluContent'
-}
+export default {}
 </script>
 <style lang="scss" scoped>
-.content {
-  flex-grow: 1;
+.header {
 }
 </style>

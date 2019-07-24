@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import Button from './button'
 import Icon from './icon'
@@ -6,32 +5,42 @@ import ButtonGroup from './button-group'
 import Input from './input'
 import Row from './row'
 import Col from './col'
+import Layout from './layout'
+import Content from './content'
+import Sider from './sider'
+import Footer from './footer'
+import Header from './header'
 
-Vue.component("g-button", Button)
-Vue.component("g-icon", Icon)
-Vue.component("g-row", Row)
-Vue.component("g-col", Col)
-Vue.component("g-input", Input)
-Vue.component("g-button-group", ButtonGroup)
+Vue.component('g-button', Button)
+Vue.component('g-icon', Icon)
+Vue.component('g-row', Row)
+Vue.component('g-col', Col)
+Vue.component('g-input', Input)
+Vue.component('g-layout', Layout)
+Vue.component('g-content', Content)
+Vue.component('g-sider', Sider)
+Vue.component('g-footer', Footer)
+Vue.component('g-header', Header)
+Vue.component('g-button-group', ButtonGroup)
 
 new Vue({
-    el: '#app',
-    data: {
-        loading1: false,
-        message: '其他'
-    },
-    // created(){
-    //     setTimeout(() => {
-    //         let event = new Event('change')
-    //         let inputElement = this.$el.querySelector('input')
-    //         inputElement.dispatchEvent(event)
-    //     },3000)
-    // },
-    methods: {
-        changeE(e){
-            console.log(e)
-        }
+  el: '#app',
+  data: {
+    loading1: false,
+    message: '其他'
+  },
+  // created(){
+  //     setTimeout(() => {
+  //         let event = new Event('change')
+  //         let inputElement = this.$el.querySelector('input')
+  //         inputElement.dispatchEvent(event)
+  //     },3000)
+  // },
+  methods: {
+    changeE(e) {
+      console.log(e)
     }
+  }
 })
 
 // import chai from 'chai'
@@ -123,6 +132,5 @@ new Vue({
 // } finally {
 //     window.errors&&window.errors.forEach(error => {
 //         console.error(error.message)
-//     }) 
+//     })
 // }
-
