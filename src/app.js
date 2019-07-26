@@ -10,6 +10,8 @@ import Content from './content'
 import Sider from './sider'
 import Footer from './footer'
 import Header from './header'
+import Toast from './toast'
+import Plugin from './plugin'
 
 Vue.component('g-button', Button)
 Vue.component('g-icon', Icon)
@@ -21,7 +23,9 @@ Vue.component('g-content', Content)
 Vue.component('g-sider', Sider)
 Vue.component('g-footer', Footer)
 Vue.component('g-header', Header)
+Vue.component('g-toast', Toast)
 Vue.component('g-button-group', ButtonGroup)
+Vue.use(Plugin)
 
 new Vue({
   el: '#app',
@@ -29,16 +33,17 @@ new Vue({
     loading1: false,
     message: '其他'
   },
-  // created(){
-  //     setTimeout(() => {
-  //         let event = new Event('change')
-  //         let inputElement = this.$el.querySelector('input')
-  //         inputElement.dispatchEvent(event)
-  //     },3000)
-  // },
+  created() {
+    // setTimeout(() => {
+    //     let event = new Event('change')
+    //     let inputElement = this.$el.querySelector('input')
+    //     inputElement.dispatchEvent(event)
+    // },3000)
+    // this.$toast('我是Toast')
+  },
   methods: {
-    changeE(e) {
-      console.log(e)
+    showToast() {
+      this.$toast('我是toast')
     }
   }
 })

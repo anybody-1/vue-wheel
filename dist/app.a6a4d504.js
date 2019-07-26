@@ -13453,7 +13453,103 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/toast.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+_vue.default.prototype.$toast = function () {
+  console.log('我是toast');
+};
+
+var _default = {
+  name: 'GuluToast'
+};
+exports.default = _default;
+        var $f78b65 = exports.default || module.exports;
+      
+      if (typeof $f78b65 === 'function') {
+        $f78b65 = $f78b65.options;
+      }
+    
+        /* template */
+        Object.assign($f78b65, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "toast" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-f78b65",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$f78b65', $f78b65);
+          } else {
+            api.reload('$f78b65', $f78b65);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/plugin.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _toast = _interopRequireDefault(require("./toast"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  install: function install(Vue, options) {
+    Vue.prototype.$toast = function (message) {
+      var constractor = Vue.extend(_toast.default);
+      var toast = new constractor();
+      toast.$slots.default = message;
+      toast.$mount();
+      document.body.appendChild(toast.$el);
+    };
+  }
+};
+exports.default = _default;
+},{"./toast":"src/toast.vue"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -13480,6 +13576,10 @@ var _footer = _interopRequireDefault(require("./footer"));
 
 var _header = _interopRequireDefault(require("./header"));
 
+var _toast = _interopRequireDefault(require("./toast"));
+
+var _plugin = _interopRequireDefault(require("./plugin"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.component('g-button', _button.default);
@@ -13502,7 +13602,11 @@ _vue.default.component('g-footer', _footer.default);
 
 _vue.default.component('g-header', _header.default);
 
+_vue.default.component('g-toast', _toast.default);
+
 _vue.default.component('g-button-group', _buttonGroup.default);
+
+_vue.default.use(_plugin.default);
 
 new _vue.default({
   el: '#app',
@@ -13510,16 +13614,16 @@ new _vue.default({
     loading1: false,
     message: '其他'
   },
-  // created(){
-  //     setTimeout(() => {
-  //         let event = new Event('change')
-  //         let inputElement = this.$el.querySelector('input')
-  //         inputElement.dispatchEvent(event)
-  //     },3000)
-  // },
+  created: function created() {// setTimeout(() => {
+    //     let event = new Event('change')
+    //     let inputElement = this.$el.querySelector('input')
+    //     inputElement.dispatchEvent(event)
+    // },3000)
+    // this.$toast('我是Toast')
+  },
   methods: {
-    changeE: function changeE(e) {
-      console.log(e);
+    showToast: function showToast() {
+      this.$toast('我是toast');
     }
   }
 }); // import chai from 'chai'
@@ -13613,7 +13717,7 @@ new _vue.default({
 //         console.error(error.message)
 //     })
 // }
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout":"src/layout.vue","./content":"src/content.vue","./sider":"src/sider.vue","./footer":"src/footer.vue","./header":"src/header.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout":"src/layout.vue","./content":"src/content.vue","./sider":"src/sider.vue","./footer":"src/footer.vue","./header":"src/header.vue","./toast":"src/toast.vue","./plugin":"src/plugin.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13641,7 +13745,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51369" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61287" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
