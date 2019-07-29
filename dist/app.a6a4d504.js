@@ -13476,6 +13476,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //
 //
 //
+//
+//
 var _default = {
   name: 'GuluToast',
   props: {
@@ -13564,10 +13566,8 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "toast", staticClass: "toast", class: _vm.toastClass },
-    [
+  return _c("div", { staticClass: "wrapper", class: _vm.toastClass }, [
+    _c("div", { ref: "toast", staticClass: "toast" }, [
       _c(
         "div",
         { staticClass: "message" },
@@ -13586,8 +13586,8 @@ exports.default = _default;
             _vm._v(_vm._s(_vm.closeButton.text))
           ])
         : _vm._e()
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13737,7 +13737,7 @@ new _vue.default({
   },
   created: function created() {},
   methods: {
-    showToast: function showToast() {
+    showToast: function showToast(position) {
       this.$toast("\u9A6C\u4E0A\u5173\u95ED: ".concat(parseInt(Math.random() * 100)), {
         closeButton: {
           text: '关闭',
@@ -13746,7 +13746,7 @@ new _vue.default({
           }
         },
         autoClose: false,
-        position: 'bottom'
+        position: position
       });
     }
   }

@@ -1,11 +1,13 @@
 <template>
-  <div class="toast" ref="toast" :class="toastClass">
-    <div class="message">
-      <slot v-if="!enableHtml"></slot>
-      <div v-html="$slots.default" v-else></div>
+  <div class="wrapper" :class="toastClass">
+    <div class="toast" ref="toast">
+      <div class="message">
+        <slot v-if="!enableHtml"></slot>
+        <div v-html="$slots.default" v-else></div>
+      </div>
+      <div class="line" ref="line"></div>
+      <span v-if="closeButton" class="close" @click="clickClose">{{ closeButton.text }}</span>
     </div>
-    <div class="line" ref="line"></div>
-    <span v-if="closeButton" class="close" @click="clickClose">{{ closeButton.text }}</span>
   </div>
 </template>
 <script>
@@ -87,7 +89,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@keyframes fade {
+@keyframes slide-up {
   0% {
     opacity: 0;
     transform: translateY(100%);
@@ -97,16 +99,60 @@ export default {
     transform: translateY(0%);
   }
 }
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 $font-size: 14px;
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
+$animation-duration: 500ms;
+.wrapper {
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+  &.position-top {
+    top: 0;
+    .toast {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      animation: slide-down $animation-duration;
+    }
+  }
+  &.position-bottom {
+    bottom: 0;
+    .toast {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      animation: slide-up $animation-duration;
+    }
+  }
+  &.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .toast {
+      animation: fade $animation-duration;
+    }
+  }
+}
 .toast {
-  animation: fade 1s;
   font-size: $font-size;
   min-height: $toast-min-height;
   line-height: 1.8;
-  position: fixed;
-  left: 50%;
   display: flex;
   align-items: center;
   background: $toast-bg;
@@ -126,18 +172,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   }
   .message {
     padding: 6px 0;
-  }
-  &.position-top {
-    transform: translateX(-50%);
-    top: 0;
-  }
-  &.position-bottom {
-    transform: translateX(-50%);
-    bottom: 0;
-  }
-  &.position-middle {
-    top: 50%;
-    transform: translate(-50%, -50%);
   }
 }
 </style>

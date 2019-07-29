@@ -865,7 +865,7 @@
 .content[data-v-bc246c] {
   flex-grow: 1;
 }
-@keyframes fade-data-v-f78b65 {
+@keyframes slide-up-data-v-f78b65 {
 0% {
     opacity: 0;
     transform: translateY(100%);
@@ -875,13 +875,56 @@
     transform: translateY(0%);
 }
 }
+@keyframes slide-down-data-v-f78b65 {
+0% {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0%);
+}
+}
+@keyframes fade-data-v-f78b65 {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
+.wrapper[data-v-f78b65] {
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+}
+.wrapper.position-top[data-v-f78b65] {
+  top: 0;
+}
+.wrapper.position-top .toast[data-v-f78b65] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  animation: slide-down-data-v-f78b65 500ms;
+}
+.wrapper.position-bottom[data-v-f78b65] {
+  bottom: 0;
+}
+.wrapper.position-bottom .toast[data-v-f78b65] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  animation: slide-up-data-v-f78b65 500ms;
+}
+.wrapper.position-middle[data-v-f78b65] {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.wrapper.position-middle .toast[data-v-f78b65] {
+  animation: fade-data-v-f78b65 500ms;
+}
 .toast[data-v-f78b65] {
-  animation: fade-data-v-f78b65 1s;
   font-size: 14px;
   min-height: 40px;
   line-height: 1.8;
-  position: fixed;
-  left: 50%;
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.75);
@@ -902,16 +945,4 @@
 }
 .toast .message[data-v-f78b65] {
   padding: 6px 0;
-}
-.toast.position-top[data-v-f78b65] {
-  transform: translateX(-50%);
-  top: 0;
-}
-.toast.position-bottom[data-v-f78b65] {
-  transform: translateX(-50%);
-  bottom: 0;
-}
-.toast.position-middle[data-v-f78b65] {
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
