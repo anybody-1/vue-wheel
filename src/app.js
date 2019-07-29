@@ -49,7 +49,9 @@ new Vue({
           callback(VM) {
             VM.log()
           }
-        }
+        },
+        autoClose: false,
+        position: 'middle'
       })
     }
   }

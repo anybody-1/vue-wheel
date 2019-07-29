@@ -12991,7 +12991,7 @@ var validator = function validator(value) {
   var keys = Object.keys(value);
   var valid = true;
   keys.forEach(function (key) {
-    if (!['offset', 'span'].includes(key)) {
+    if (['offset', 'span'].indexOf(key) === -1) {
       valid = false;
     }
   });
@@ -13499,6 +13499,18 @@ var _default = {
     enableHtml: {
       type: Boolean,
       default: false
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'middle'].indexOf(value) >= 0;
+      }
+    }
+  },
+  computed: {
+    toastClass: function toastClass() {
+      return ["position-".concat(this.position)];
     }
   },
   mounted: function mounted() {
@@ -13551,26 +13563,30 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { ref: "toast", staticClass: "toast" }, [
-    _c(
-      "div",
-      { staticClass: "message" },
-      [
-        !_vm.enableHtml
-          ? _vm._t("default")
-          : _c("div", { domProps: { innerHTML: _vm._s(_vm.$slots.default) } })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { ref: "line", staticClass: "line" }),
-    _vm._v(" "),
-    _vm.closeButton
-      ? _c("span", { staticClass: "close", on: { click: _vm.clickClose } }, [
-          _vm._v(_vm._s(_vm.closeButton.text))
-        ])
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    { ref: "toast", staticClass: "toast", class: _vm.toastClass },
+    [
+      _c(
+        "div",
+        { staticClass: "message" },
+        [
+          !_vm.enableHtml
+            ? _vm._t("default")
+            : _c("div", { domProps: { innerHTML: _vm._s(_vm.$slots.default) } })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
+      _vm._v(" "),
+      _vm.closeButton
+        ? _c("span", { staticClass: "close", on: { click: _vm.clickClose } }, [
+            _vm._v(_vm._s(_vm.closeButton.text))
+          ])
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13711,7 +13727,9 @@ new _vue.default({
           callback: function callback(VM) {
             VM.log();
           }
-        }
+        },
+        autoClose: false,
+        position: 'middle'
       });
     }
   }

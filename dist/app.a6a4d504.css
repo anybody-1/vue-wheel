@@ -873,8 +873,6 @@
   left: 50%;
   display: flex;
   align-items: center;
-  transform: translateX(-50%);
-  top: 0;
   background: rgba(0, 0, 0, 0.75);
   border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
@@ -893,4 +891,16 @@
 }
 .toast .message[data-v-f78b65] {
   padding: 6px 0;
+}
+.toast.position-top[data-v-f78b65] {
+  transform: translateX(-50%);
+  top: 0;
+}
+.toast.position-bottom[data-v-f78b65] {
+  transform: translateX(-50%);
+  bottom: 0;
+}
+.toast.position-middle[data-v-f78b65] {
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
