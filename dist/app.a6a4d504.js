@@ -13536,6 +13536,7 @@ var _default = {
     },
     close: function close() {
       this.$el.remove();
+      this.$emit('close');
       this.$destroy();
     },
     log: function log() {
@@ -13644,7 +13645,10 @@ var _default = {
       currentToast = createToast({
         Vue: Vue,
         message: message,
-        propsData: toastbutton
+        propsData: toastbutton,
+        clearCurrentToast: function clearCurrentToast() {
+          currentToast = null;
+        }
       });
     };
   }
@@ -13654,13 +13658,15 @@ exports.default = _default;
 function createToast(_ref) {
   var Vue = _ref.Vue,
       message = _ref.message,
-      propsData = _ref.propsData;
+      propsData = _ref.propsData,
+      clearCurrentToast = _ref.clearCurrentToast;
   var constractor = Vue.extend(_toast.default);
   var toast = new constractor({
     propsData: propsData
   });
   toast.$slots.default = message;
   toast.$mount();
+  toast.$on('close', clearCurrentToast);
   document.body.appendChild(toast.$el);
   return toast;
 }
@@ -13740,7 +13746,7 @@ new _vue.default({
           }
         },
         autoClose: false,
-        position: 'middle'
+        position: 'bottom'
       });
     }
   }

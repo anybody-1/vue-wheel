@@ -68,6 +68,7 @@ export default {
     },
     close() {
       this.$el.remove()
+      this.$emit('close')
       this.$destroy()
     },
     log() {
@@ -86,10 +87,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 $font-size: 14px;
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 .toast {
+  animation: fade 1s;
   font-size: $font-size;
   min-height: $toast-min-height;
   line-height: 1.8;
