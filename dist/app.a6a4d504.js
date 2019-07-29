@@ -12544,6 +12544,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
 var _default = {
   name: 'GuluButton',
   components: {
@@ -13461,21 +13464,79 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _vue = _interopRequireDefault(require("vue"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //
 //
 //
 //
 //
-_vue.default.prototype.$toast = function () {
-  console.log('我是toast');
-};
-
+//
+//
+//
+//
+//
 var _default = {
-  name: 'GuluToast'
+  name: 'GuluToast',
+  props: {
+    autoClose: {
+      type: Boolean,
+      default: true
+    },
+    autoCloseDelay: {
+      type: Number,
+      default: 10
+    },
+    closeButton: {
+      type: Object,
+      default: function _default() {
+        return {
+          text: '关闭信息',
+          callback: undefined
+        };
+      }
+    },
+    enableHtml: {
+      type: Boolean,
+      default: false
+    }
+  },
+  mounted: function mounted() {
+    this.setStyle();
+    this.excuteClose();
+  },
+  methods: {
+    setStyle: function setStyle() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.$refs.toast.style.height = getComputedStyle(_this.$refs.toast, null).height;
+      });
+    },
+    excuteClose: function excuteClose() {
+      var _this2 = this;
+
+      if (this.autoClose) {
+        setTimeout(function () {
+          _this2.close();
+        }, this.autoCloseDelay * 1000);
+      }
+    },
+    close: function close() {
+      this.$el.remove();
+      this.$destroy();
+    },
+    log: function log() {
+      console.log('测试');
+    },
+    clickClose: function clickClose() {
+      this.close();
+
+      if (this.closeButton && _typeof(this.closeButton.callback === 'function')) {
+        this.closeButton.callback(this);
+      }
+    }
+  }
 };
 exports.default = _default;
         var $f78b65 = exports.default || module.exports;
@@ -13490,7 +13551,26 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "toast" }, [_vm._t("default")], 2)
+  return _c("div", { ref: "toast", staticClass: "toast" }, [
+    _c(
+      "div",
+      { staticClass: "message" },
+      [
+        !_vm.enableHtml
+          ? _vm._t("default")
+          : _c("div", { domProps: { innerHTML: _vm._s(_vm.$slots.default) } })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("div", { ref: "line", staticClass: "line" }),
+    _vm._v(" "),
+    _vm.closeButton
+      ? _c("span", { staticClass: "close", on: { click: _vm.clickClose } }, [
+          _vm._v(_vm._s(_vm.closeButton.text))
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13525,7 +13605,7 @@ render._withStripped = true
       
       }
     })();
-},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/plugin.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/plugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13539,9 +13619,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = {
   install: function install(Vue, options) {
-    Vue.prototype.$toast = function (message) {
+    Vue.prototype.$toast = function (message, toastbutton) {
       var constractor = Vue.extend(_toast.default);
-      var toast = new constractor();
+      var toast = new constractor({
+        propsData: toastbutton
+      });
       toast.$slots.default = message;
       toast.$mount();
       document.body.appendChild(toast.$el);
@@ -13623,100 +13705,17 @@ new _vue.default({
   },
   methods: {
     showToast: function showToast() {
-      this.$toast('我是toast');
+      this.$toast('马上关闭', {
+        closeButton: {
+          text: '关闭',
+          callback: function callback(VM) {
+            VM.log();
+          }
+        }
+      });
     }
   }
-}); // import chai from 'chai'
-// import spies from 'chai-spies'
-// chai.use(spies)
-// const expect = chai.expect
-// try {
-//     //单元测试
-// {
-//     const Constructor = Vue.extend(Button)
-//     const vm = new Constructor({
-//         propsData: {
-//             icon: 'settings'
-//         }
-//     })
-//     vm.$mount('#test')
-//     let useElement = vm.$el.querySelector('use')
-//     let href = useElement.getAttribute('xlink:href')
-//     expect(href).to.eq('#i-settings')
-//     vm.$el.remove()
-//     vm.$destroy()
-// }
-// {
-//     const Constructor = Vue.extend(Button)
-//     const vm = new Constructor({
-//         propsData: {
-//             icon: 'settings',
-//             loading: true
-//         }
-//     })
-//     vm.$mount()
-//     let useElement = vm.$el.querySelector('use')
-//     let href = useElement.getAttribute('xlink:href')
-//     expect(href).to.eq('#i-loading')
-//     vm.$el.remove()
-//     vm.$destroy()
-// }
-// {
-//     const div = document.createElement('div')
-//     document.body.appendChild(div)
-//     const Constructor = Vue.extend(Button)
-//     const vm = new Constructor({
-//         propsData: {
-//             icon: 'settings'
-//         }
-//     })
-//     vm.$mount(div)
-//     let svg = vm.$el.querySelector('svg')
-//     let {order} = window.getComputedStyle(svg)
-//     expect(order).to.eq('1')
-//     vm.$el.remove()
-//     vm.$destroy()
-// }
-// {
-//     const div = document.createElement('div')
-//     document.body.appendChild(div)
-//     const Constructor = Vue.extend(Button)
-//     const vm = new Constructor({
-//         propsData: {
-//             icon: 'settings',
-//             iconPosition: 'right'
-//         }
-//     })
-//     vm.$mount(div)
-//     let svg = vm.$el.querySelector('svg')
-//     let {order} = window.getComputedStyle(svg)
-//     expect(order).to.eq('2')
-//     vm.$el.remove()
-//     vm.$destroy()
-// }
-// {
-//     //mock
-//     const Constructor = Vue.extend(Button)
-//     const vm = new Constructor({
-//         propsData: {
-//             icon: 'settings'
-//         }
-//     })
-//     vm.$mount()
-//     let spy = chai.spy(function(){})
-//     vm.$on('click', spy)
-//     //希望这个函数被执行
-//     let button = vm.$el
-//     button.click()
-//     expect(spy).to.have.been.called()
-// }
-// } catch (error) {
-//     window.errors = [error]
-// } finally {
-//     window.errors&&window.errors.forEach(error => {
-//         console.error(error.message)
-//     })
-// }
+});
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout":"src/layout.vue","./content":"src/content.vue","./sider":"src/sider.vue","./footer":"src/footer.vue","./header":"src/header.vue","./toast":"src/toast.vue","./plugin":"src/plugin.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -13745,7 +13744,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61287" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54419" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
