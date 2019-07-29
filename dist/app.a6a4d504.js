@@ -13633,20 +13633,37 @@ var _toast = _interopRequireDefault(require("./toast"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var currentToast;
 var _default = {
   install: function install(Vue, options) {
     Vue.prototype.$toast = function (message, toastbutton) {
-      var constractor = Vue.extend(_toast.default);
-      var toast = new constractor({
+      if (currentToast) {
+        currentToast.close();
+      }
+
+      currentToast = createToast({
+        Vue: Vue,
+        message: message,
         propsData: toastbutton
       });
-      toast.$slots.default = message;
-      toast.$mount();
-      document.body.appendChild(toast.$el);
     };
   }
 };
 exports.default = _default;
+
+function createToast(_ref) {
+  var Vue = _ref.Vue,
+      message = _ref.message,
+      propsData = _ref.propsData;
+  var constractor = Vue.extend(_toast.default);
+  var toast = new constractor({
+    propsData: propsData
+  });
+  toast.$slots.default = message;
+  toast.$mount();
+  document.body.appendChild(toast.$el);
+  return toast;
+}
 },{"./toast":"src/toast.vue"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -13712,16 +13729,10 @@ new _vue.default({
     loading1: false,
     message: '其他'
   },
-  created: function created() {// setTimeout(() => {
-    //     let event = new Event('change')
-    //     let inputElement = this.$el.querySelector('input')
-    //     inputElement.dispatchEvent(event)
-    // },3000)
-    // this.$toast('我是Toast')
-  },
+  created: function created() {},
   methods: {
     showToast: function showToast() {
-      this.$toast('马上关闭', {
+      this.$toast("\u9A6C\u4E0A\u5173\u95ED: ".concat(parseInt(Math.random() * 100)), {
         closeButton: {
           text: '关闭',
           callback: function callback(VM) {

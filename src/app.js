@@ -33,17 +33,10 @@ new Vue({
     loading1: false,
     message: '其他'
   },
-  created() {
-    // setTimeout(() => {
-    //     let event = new Event('change')
-    //     let inputElement = this.$el.querySelector('input')
-    //     inputElement.dispatchEvent(event)
-    // },3000)
-    // this.$toast('我是Toast')
-  },
+  created() {},
   methods: {
     showToast() {
-      this.$toast('马上关闭', {
+      this.$toast(`马上关闭: ${parseInt(Math.random() * 100)}`, {
         closeButton: {
           text: '关闭',
           callback(VM) {
