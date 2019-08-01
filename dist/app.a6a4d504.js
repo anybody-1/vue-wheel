@@ -13463,9 +13463,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 //
 //
 //
@@ -13482,13 +13479,16 @@ var _default = {
   name: 'GuluToast',
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
+      type: [Boolean, Number],
+      default: 5,
+      validator: function validator(value) {
+        return typeof value === 'number' || value === false;
+      }
     },
-    autoCloseDelay: {
-      type: Number,
-      default: 10
-    },
+    // autoCloseDelay: {
+    //   type: Number,
+    //   default: 10
+    // },
     closeButton: {
       type: Object,
       default: function _default() {
@@ -13533,7 +13533,7 @@ var _default = {
       if (this.autoClose) {
         setTimeout(function () {
           _this2.close();
-        }, this.autoCloseDelay * 1000);
+        }, this.autoClose * 1000);
       }
     },
     close: function close() {
@@ -13541,13 +13541,10 @@ var _default = {
       this.$emit('close');
       this.$destroy();
     },
-    log: function log() {
-      console.log('测试');
-    },
     clickClose: function clickClose() {
       this.close();
 
-      if (this.closeButton && _typeof(this.closeButton.callback === 'function')) {
+      if (this.closeButton && typeof this.closeButton.callback === 'function') {
         this.closeButton.callback(this);
       }
     }
@@ -13664,7 +13661,7 @@ function createToast(_ref) {
   var toast = new constractor({
     propsData: propsData
   });
-  toast.$slots.default = message;
+  toast.$slots.default = [message];
   toast.$mount();
   toast.$on('close', clearCurrentToast);
   document.body.appendChild(toast.$el);
@@ -13740,10 +13737,7 @@ new _vue.default({
     showToast: function showToast(position) {
       this.$toast("\u9A6C\u4E0A\u5173\u95ED: ".concat(parseInt(Math.random() * 100)), {
         closeButton: {
-          text: '关闭',
-          callback: function callback(VM) {
-            VM.log();
-          }
+          text: '关闭'
         },
         autoClose: false,
         position: position
@@ -13779,7 +13773,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54419" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52474" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

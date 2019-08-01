@@ -38,10 +38,7 @@ new Vue({
     showToast(position) {
       this.$toast(`马上关闭: ${parseInt(Math.random() * 100)}`, {
         closeButton: {
-          text: '关闭',
-          callback(VM) {
-            VM.log()
-          }
+          text: '关闭'
         },
         autoClose: false,
         position
