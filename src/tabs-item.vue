@@ -29,17 +29,18 @@ export default {
   },
   methods: {
     selectItem() {
-      this.eventBus.$emit('update:selected', this.name)
+      this.eventBus.$emit('update:selected', this.name, this)
     }
   },
   created() {
-    this.eventBus.$on('update:selected', name => {
+    this.eventBus.$on('update:selected', (name, vm) => {
       this.active = name === this.name
     })
   }
 }
 </script>
 <style lang="scss" scoped>
+$head-color: blue;
 .tabs-item {
   margin: 0 1em;
   cursor: pointer;
@@ -47,7 +48,8 @@ export default {
   display: flex;
   align-items: center;
   &.active {
-    background: #9966;
+    color: $head-color;
+    font-weight: bold;
   }
 }
 </style>

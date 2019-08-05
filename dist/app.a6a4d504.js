@@ -13710,7 +13710,17 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    this.eventBus.$emit('update:selected', this.selected);
+    var _this = this;
+
+    this.$children.forEach(function (vm) {
+      if (vm.$options.name === 'GuluTabsHead') {
+        vm.$children.forEach(function (child) {
+          if (child.name === _this.selected) {
+            _this.eventBus.$emit('update:selected', _this.selected, child);
+          }
+        });
+      }
+    });
   }
 };
 exports.default = _default;
@@ -13777,8 +13787,7 @@ var _default = {
   name: 'GuluTabsBody',
   inject: ['eventBus'],
   created: function created() {
-    this.eventBus.$on('update:selected', function (name) {
-      console.log("body: ".concat(name));
+    this.eventBus.$on('update:selected', function (name) {// console.log(`body: ${name}`)
     });
   }
 };
@@ -13869,13 +13878,13 @@ var _default = {
   },
   methods: {
     selectItem: function selectItem() {
-      this.eventBus.$emit('update:selected', this.name);
+      this.eventBus.$emit('update:selected', this.name, this);
     }
   },
   created: function created() {
     var _this = this;
 
-    this.eventBus.$on('update:selected', function (name) {
+    this.eventBus.$on('update:selected', function (name, vm) {
       _this.active = name === _this.name;
     });
   }
@@ -13951,12 +13960,14 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'GuluTabsHead',
   inject: ['eventBus'],
   created: function created() {
-    this.eventBus.$on('update:selected', function (name) {
-      console.log("head: ".concat(name));
+    this.eventBus.$on('update:selected', function (name, vm) {
+      console.log(name, vm);
     });
   }
 };
@@ -13979,9 +13990,9 @@ exports.default = _default;
     [
       _vm._t("default"),
       _vm._v(" "),
-      _c("div", { staticClass: "action-wrapper" }),
+      _c("div", { ref: "line", staticClass: "line" }),
       _vm._v(" "),
-      _vm._t("action")
+      _c("div", { staticClass: "action-wrapper" }, [_vm._t("action")], 2)
     ],
     2
   )
