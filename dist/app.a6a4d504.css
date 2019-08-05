@@ -957,21 +957,30 @@
   color: blue;
   font-weight: bold;
 }
+.tabs-item.disabled[data-v-46131e] {
+  color: #ddd;
+  cursor: not-allowed;
+}
 .tabs-head[data-v-a4dcfc] {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   height: 40px;
   position: relative;
+  border-bottom: 1px solid #ddd;
 }
 .tabs-head > .action-wrapper[data-v-a4dcfc] {
   margin-left: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .tabs-head > .line[data-v-a4dcfc] {
   position: absolute;
   border-bottom: 1px solid blue;
-  width: 100px;
   bottom: 0;
+  transition: all 350ms;
 }
-.tabs-pane.active[data-v-be7d9b] {
-  background: #9966;
+.tabs-pane[data-v-be7d9b] {
+  padding: 1em;
 }

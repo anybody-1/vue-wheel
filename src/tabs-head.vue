@@ -11,9 +11,11 @@
 export default {
   name: 'GuluTabsHead',
   inject: ['eventBus'],
-  created() {
+  mounted() {
     this.eventBus.$on('update:selected', (name, vm) => {
-      console.log(name, vm)
+      let { width, height, left, top } = vm.$el.getBoundingClientRect()
+      this.$refs.line.style.width = `${width}px`
+      this.$refs.line.style.left = `${left}px`
     })
   }
 }
@@ -21,19 +23,25 @@ export default {
 <style lang="scss" scoped>
 $head-height: 40px;
 $line-color: blue;
+$border-color: #ddd;
 .tabs-head {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   height: $head-height;
   position: relative;
+  border-bottom: 1px solid $border-color;
   > .action-wrapper {
     margin-left: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
   > .line {
     position: absolute;
     border-bottom: 1px solid $line-color;
-    width: 100px;
     bottom: 0;
+    transition: all 350ms;
   }
 }
 </style>

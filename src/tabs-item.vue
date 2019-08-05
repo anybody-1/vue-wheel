@@ -24,11 +24,14 @@ export default {
   },
   computed: {
     classes() {
-      return { active: this.active }
+      return { active: this.active, disabled: this.disabled }
     }
   },
   methods: {
     selectItem() {
+      if (this.disabled) {
+        return
+      }
       this.eventBus.$emit('update:selected', this.name, this)
     }
   },
@@ -41,6 +44,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 $head-color: blue;
+$disabled: #ddd;
 .tabs-item {
   margin: 0 1em;
   cursor: pointer;
@@ -50,6 +54,10 @@ $head-color: blue;
   &.active {
     color: $head-color;
     font-weight: bold;
+  }
+  &.disabled {
+    color: $disabled;
+    cursor: not-allowed;
   }
 }
 </style>

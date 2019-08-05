@@ -13872,12 +13872,17 @@ var _default = {
   computed: {
     classes: function classes() {
       return {
-        active: this.active
+        active: this.active,
+        disabled: this.disabled
       };
     }
   },
   methods: {
     selectItem: function selectItem() {
+      if (this.disabled) {
+        return;
+      }
+
       this.eventBus.$emit('update:selected', this.name, this);
     }
   },
@@ -13965,9 +13970,18 @@ exports.default = void 0;
 var _default = {
   name: 'GuluTabsHead',
   inject: ['eventBus'],
-  created: function created() {
+  mounted: function mounted() {
+    var _this = this;
+
     this.eventBus.$on('update:selected', function (name, vm) {
-      console.log(name, vm);
+      var _vm$$el$getBoundingCl = vm.$el.getBoundingClientRect(),
+          width = _vm$$el$getBoundingCl.width,
+          height = _vm$$el$getBoundingCl.height,
+          left = _vm$$el$getBoundingCl.left,
+          top = _vm$$el$getBoundingCl.top;
+
+      _this.$refs.line.style.width = "".concat(width, "px");
+      _this.$refs.line.style.left = "".concat(left, "px");
     });
   }
 };
