@@ -12,6 +12,11 @@ import Footer from './footer'
 import Header from './header'
 import Toast from './toast'
 import Plugin from './plugin'
+import Tabs from './tabs'
+import TabsBody from './tabs-body'
+import TabsItem from './tabs-item'
+import TabsHead from './tabs-head'
+import TabsPane from './tabs-pane'
 
 Vue.component('g-button', Button)
 Vue.component('g-icon', Icon)
@@ -24,6 +29,11 @@ Vue.component('g-sider', Sider)
 Vue.component('g-footer', Footer)
 Vue.component('g-header', Header)
 Vue.component('g-toast', Toast)
+Vue.component('g-tabs', Tabs)
+Vue.component('g-tabs-body', TabsBody)
+Vue.component('g-tabs-head', TabsHead)
+Vue.component('g-tabs-pane', TabsPane)
+Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-button-group', ButtonGroup)
 Vue.use(Plugin)
 
@@ -31,7 +41,8 @@ new Vue({
   el: '#app',
   data: {
     loading1: false,
-    message: '其他'
+    message: '其他',
+    selectedKey: 'sport'
   },
   created() {},
   methods: {

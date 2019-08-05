@@ -24,7 +24,7 @@ describe('Toast', () => {
         done()
       })
     })
-    it('接受closeButoon', () => {
+    it('接受closeButoon', done => {
       let callback = sinon.fake()
       let Constractor = Vue.extend(Toast)
       let vm = new Constractor({
@@ -37,8 +37,11 @@ describe('Toast', () => {
       }).$mount()
       let closeButton = vm.$el.querySelector('.close')
       expect(closeButton.textContent.trim()).to.eq('关闭')
-      closeButton.click()
-      expect(callback).to.have.been.called
+      setTimeout(() => {
+        closeButton.click()
+        expect(callback).to.have.been.called
+        done()
+      }, 200)
     })
     it('接受enableHtml', () => {
       let Constractor = Vue.extend(Toast)
