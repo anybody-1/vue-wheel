@@ -22,7 +22,7 @@ export default {
   display: flex;
   border: 1px solid red;
   justify-content: flex-start;
-  align-items: center;
+  // align-items: center;
   height: $head-height;
   > .action-wrapper {
     margin-left: auto;

@@ -948,6 +948,10 @@
 }
 .tabs-item[data-v-46131e] {
   margin: 0 1em;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .tabs-item.active[data-v-46131e] {
   background: #9966;
@@ -956,7 +960,6 @@
   display: flex;
   border: 1px solid red;
   justify-content: flex-start;
-  align-items: center;
   height: 40px;
 }
 .tabs-head > .action-wrapper[data-v-a4dcfc] {
