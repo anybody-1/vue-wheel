@@ -31,6 +31,11 @@ export default {
     }
   },
   mounted() {
+    if (this.$children.length === 0) {
+      console &&
+        console.warn &&
+        console.warn('tabs的子组件应该为tabs-head和tabs-body,缺少相应子组件')
+    }
     this.$children.forEach(vm => {
       if (vm.$options.name === 'GuluTabsHead') {
         vm.$children.forEach(child => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="selectItem" :class="classes">
+  <div class="tabs-item" @click="selectItem" :class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -32,18 +32,21 @@ export default {
       if (this.disabled) {
         return
       }
-      this.eventBus.$emit('update:selected', this.name, this)
+      this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
+      this.$emit('click', this)
     }
   },
   created() {
-    this.eventBus.$on('update:selected', (name, vm) => {
-      this.active = name === this.name
-    })
+    if (this.eventBus) {
+      this.eventBus.$on('update:selected', (name, vm) => {
+        this.active = name === this.name
+      })
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
-$head-color: blue;
+$head-color: rgb(64, 158, 255);
 $disabled: #ddd;
 .tabs-item {
   margin: 0 1em;

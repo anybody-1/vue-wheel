@@ -954,7 +954,7 @@
   align-items: center;
 }
 .tabs-item.active[data-v-46131e] {
-  color: blue;
+  color: #409eff;
   font-weight: bold;
 }
 .tabs-item.disabled[data-v-46131e] {
@@ -977,7 +977,7 @@
 }
 .tabs-head > .line[data-v-a4dcfc] {
   position: absolute;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #409eff;
   bottom: 0;
   transition: all 350ms;
 }

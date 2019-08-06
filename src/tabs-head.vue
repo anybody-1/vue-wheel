@@ -22,7 +22,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 $head-height: 40px;
-$line-color: blue;
+$line-color: rgb(64, 158, 255);
 $border-color: #ddd;
 .tabs-head {
   display: flex;

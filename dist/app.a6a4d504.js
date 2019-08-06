@@ -13712,6 +13712,10 @@ var _default = {
   mounted: function mounted() {
     var _this = this;
 
+    if (this.$children.length === 0) {
+      console && console.warn && console.warn('tabs的子组件应该为tabs-head和tabs-body,缺少相应子组件');
+    }
+
     this.$children.forEach(function (vm) {
       if (vm.$options.name === 'GuluTabsHead') {
         vm.$children.forEach(function (child) {
@@ -13883,15 +13887,18 @@ var _default = {
         return;
       }
 
-      this.eventBus.$emit('update:selected', this.name, this);
+      this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
+      this.$emit('click', this);
     }
   },
   created: function created() {
     var _this = this;
 
-    this.eventBus.$on('update:selected', function (name, vm) {
-      _this.active = name === _this.name;
-    });
+    if (this.eventBus) {
+      this.eventBus.$on('update:selected', function (name, vm) {
+        _this.active = name === _this.name;
+      });
+    }
   }
 };
 exports.default = _default;
@@ -13912,6 +13919,7 @@ exports.default = _default;
     {
       staticClass: "tabs-item",
       class: _vm.classes,
+      attrs: { "data-name": _vm.name },
       on: { click: _vm.selectItem }
     },
     [_vm._t("default")],
@@ -14267,7 +14275,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57845" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59367" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
