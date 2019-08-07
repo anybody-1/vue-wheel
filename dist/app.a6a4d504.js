@@ -14172,7 +14172,20 @@ var _default = {
   },
   methods: {
     showContent: function showContent() {
+      var _this = this;
+
       this.visible = !this.visible;
+
+      if (this.visible === true) {
+        var eventHandle = function eventHandle() {
+          _this.visible = false;
+          document.removeEventListener('click', eventHandle);
+        };
+
+        this.$nextTick(function () {
+          document.addEventListener('click', eventHandle);
+        });
+      }
     }
   }
 };
@@ -14191,10 +14204,30 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.showContent } },
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.showContent($event)
+        }
+      }
+    },
     [
       _vm.visible
-        ? _c("div", { staticClass: "content-wrapper" }, [_vm._t("content")], 2)
+        ? _c(
+            "div",
+            {
+              staticClass: "content-wrapper",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [_vm._t("content")],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm._t("default")
