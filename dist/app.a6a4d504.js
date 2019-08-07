@@ -14163,6 +14163,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'GuluPopover',
   data: function data() {
@@ -14183,6 +14185,16 @@ var _default = {
         };
 
         this.$nextTick(function () {
+          document.body.appendChild(_this.$refs.contentWrapper);
+
+          var _this$$refs$trigger$g = _this.$refs.trigger.getBoundingClientRect(),
+              top = _this$$refs$trigger$g.top,
+              left = _this$$refs$trigger$g.left,
+              height = _this$$refs$trigger$g.height,
+              width = _this$$refs$trigger$g.width;
+
+          _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+          _this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
           document.addEventListener('click', eventHandle);
         });
       }
@@ -14218,6 +14230,7 @@ exports.default = _default;
         ? _c(
             "div",
             {
+              ref: "contentWrapper",
               staticClass: "content-wrapper",
               on: {
                 click: function($event) {
@@ -14230,9 +14243,8 @@ exports.default = _default;
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
+      _c("span", { ref: "trigger" }, [_vm._t("default")], 2)
+    ]
   )
 }
 var staticRenderFns = []
