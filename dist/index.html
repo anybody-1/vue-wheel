@@ -51,34 +51,46 @@
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 
 <body>
-  <div id="app">
-    <g-tabs :selected.sync="selectedKey">
+  <div id="app" style="padding-left: 100px;padding-top:100px;">
+    <g-popover>
+      <template slot="content">
+        <div>我睡觉哦dsf</div>
+      </template>
+      <g-button>点击</g-button>
+    </g-popover>
+    <g-popover>
+      <template slot="content">
+        <div>内容</div>
+      </template>
+      <g-button>点击</g-button>
+    </g-popover>
+    <!-- <g-tabs :selected.sync='selectedKey'>
       <g-tabs-head>
-        <template slot="action">
+        <template slot='action'>
           <g-button>操作</g-button>
         </template>
-        <g-tabs-item name="sport">
+        <g-tabs-item name='sport'>
           体育
         </g-tabs-item>
-        <g-tabs-item name="finance" disabled="">
-          <g-icon name="settings"></g-icon>财经
+        <g-tabs-item name='finance' disabled>
+          <g-icon name='settings'></g-icon>财经
         </g-tabs-item>
-        <g-tabs-item name="international">
+        <g-tabs-item name='international'>
           国际
         </g-tabs-item>
       </g-tabs-head>
       <g-tabs-body>
-        <g-tabs-pane name="sport">
+        <g-tabs-pane name='sport'>
           体育资讯
         </g-tabs-pane>
-        <g-tabs-pane name="finance">
+        <g-tabs-pane name='finance'>
           财经资讯
         </g-tabs-pane>
-        <g-tabs-pane name="international">
+        <g-tabs-pane name='international'>
           国际资讯
         </g-tabs-pane>
       </g-tabs-body>
-    </g-tabs>
+    </g-tabs> -->
     <!-- <g-button @click="showToast('top')">top</g-button>
     <g-button @click="showToast('bottom')">bottom</g-button>
     <g-button @click="showToast('middle')">middle</g-button> -->
