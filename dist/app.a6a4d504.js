@@ -14173,30 +14173,45 @@ var _default = {
     };
   },
   methods: {
-    showContent: function showContent() {
+    onClickDocument: function onClickDocument(e) {
+      if (!this.$refs.popover || !(this.$refs.popover.contains(e.target) || this.$refs.popover === e.target)) {
+        this.onClose();
+      }
+    },
+    positionContent: function positionContent() {
+      document.body.appendChild(this.$refs.contentWrapper);
+
+      var _this$$refs$trigger$g = this.$refs.trigger.getBoundingClientRect(),
+          top = _this$$refs$trigger$g.top,
+          left = _this$$refs$trigger$g.left,
+          height = _this$$refs$trigger$g.height,
+          width = _this$$refs$trigger$g.width;
+
+      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+      this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
+    },
+    onShow: function onShow() {
       var _this = this;
 
-      this.visible = !this.visible;
+      this.visible = true;
+      setTimeout(function () {
+        _this.positionContent();
 
-      if (this.visible === true) {
-        var eventHandle = function eventHandle() {
-          _this.visible = false;
-          document.removeEventListener('click', eventHandle);
-        };
-
-        this.$nextTick(function () {
-          document.body.appendChild(_this.$refs.contentWrapper);
-
-          var _this$$refs$trigger$g = _this.$refs.trigger.getBoundingClientRect(),
-              top = _this$$refs$trigger$g.top,
-              left = _this$$refs$trigger$g.left,
-              height = _this$$refs$trigger$g.height,
-              width = _this$$refs$trigger$g.width;
-
-          _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-          _this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
-          document.addEventListener('click', eventHandle);
-        });
+        document.addEventListener('click', _this.onClickDocument);
+      }, 0);
+    },
+    onClose: function onClose() {
+      this.visible = false;
+      document.removeEventListener('click', this.onClickDocument);
+      console.log('关闭');
+    },
+    showContent: function showContent(e) {
+      if (this.$refs.trigger.contains(e.target)) {
+        if (this.visible === true) {
+          this.onClose();
+        } else {
+          this.onShow();
+        }
       }
     }
   }
@@ -14216,28 +14231,12 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "popover",
-      on: {
-        click: function($event) {
-          $event.stopPropagation()
-          return _vm.showContent($event)
-        }
-      }
-    },
+    { ref: "popover", staticClass: "popover", on: { click: _vm.showContent } },
     [
       _vm.visible
         ? _c(
             "div",
-            {
-              ref: "contentWrapper",
-              staticClass: "content-wrapper",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                }
-              }
-            },
+            { ref: "contentWrapper", staticClass: "content-wrapper" },
             [_vm._t("content")],
             2
           )
@@ -14411,7 +14410,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63928" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
