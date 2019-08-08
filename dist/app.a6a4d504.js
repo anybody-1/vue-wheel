@@ -14181,7 +14181,7 @@ var _default = {
   },
   methods: {
     onClickDocument: function onClickDocument(e) {
-      if (!this.$refs.popover || !(this.$refs.popover.contains(e.target) || this.$refs.popover === e.target)) {
+      if (!this.$refs.popover || !(this.$refs.popover.contains(e.target) || this.$refs.popover === e.target || this.$refs.contentWrapper.contains(e.target)) || !this.$refs.contentWrapper.contains(e.target)) {
         this.onClose();
       }
     },
@@ -14210,7 +14210,6 @@ var _default = {
     onClose: function onClose() {
       this.visible = false;
       document.removeEventListener('click', this.onClickDocument);
-      console.log('关闭');
     },
     showContent: function showContent(e) {
       if (this.$refs.trigger.contains(e.target)) {
@@ -14249,7 +14248,12 @@ exports.default = _default;
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("span", { ref: "trigger" }, [_vm._t("default")], 2)
+      _c(
+        "span",
+        { ref: "trigger", staticStyle: { display: "inline-block" } },
+        [_vm._t("default")],
+        2
+      )
     ]
   )
 }
