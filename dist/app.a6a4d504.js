@@ -13709,22 +13709,29 @@ var _default = {
       eventBus: this.eventBus
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    if (this.$children.length === 0) {
-      console && console.warn && console.warn('tabs的子组件应该为tabs-head和tabs-body,缺少相应子组件');
-    }
-
-    this.$children.forEach(function (vm) {
-      if (vm.$options.name === 'GuluTabsHead') {
-        vm.$children.forEach(function (child) {
-          if (child.name === _this.selected) {
-            _this.eventBus.$emit('update:selected', _this.selected, child);
-          }
-        });
+  methods: {
+    checkChildren: function checkChildren() {
+      if (this.$children.length === 0) {
+        console && console.warn && console.warn('tabs的子组件应该为tabs-head和tabs-body,缺少相应子组件');
       }
-    });
+    },
+    selectTabs: function selectTabs() {
+      var _this = this;
+
+      this.$children.forEach(function (vm) {
+        if (vm.$options.name === 'GuluTabsHead') {
+          vm.$children.forEach(function (child) {
+            if (child.name === _this.selected) {
+              _this.eventBus.$emit('update:selected', _this.selected, child);
+            }
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.checkChildren();
+    this.selectTabs();
   }
 };
 exports.default = _default;
