@@ -54,15 +54,27 @@
   <div id="app" style="padding-left: 100px;padding-top:100px;">
     <g-popover>
       <template slot="content">
-        <span>fgdfgdfgdfgdfgdffgdfdgdfgdfgdgdgfgrgrdg</span>
+        <span>上边内容</span>
       </template>
-      <g-button>点击</g-button>
+      <g-button>上边</g-button>
     </g-popover>
-    <g-popover>
+    <g-popover position="bottom">
       <template slot="content">
-        <span>内容</span>
+        <span>下边内容</span>
       </template>
-      <g-button>点击</g-button>
+      <g-button>下边</g-button>
+    </g-popover>
+    <g-popover position="left">
+      <template slot="content">
+        <span>左边内容</span>
+      </template>
+      <g-button>左边</g-button>
+    </g-popover>
+    <g-popover position="right">
+      <template slot="content">
+        <span>右边内容</span>
+      </template>
+      <g-button>右边</g-button>
     </g-popover>
     <!-- <g-tabs :selected.sync='selectedKey'>
       <g-tabs-head>

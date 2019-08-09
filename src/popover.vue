@@ -1,6 +1,11 @@
 <template>
   <div class="popover" @click="showContent" ref="popover">
-    <div ref="contentWrapper" v-if="visible" class="content-wrapper">
+    <div
+      ref="contentWrapper"
+      v-if="visible"
+      class="content-wrapper"
+      :class="[`position-${position}`]"
+    >
       <slot name="content"></slot>
     </div>
     <span ref="trigger" style="display: inline-block;">
@@ -11,6 +16,15 @@
 <script>
 export default {
   name: 'GuluPopover',
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator(value) {
+        return ['top', 'left', 'bottom', 'right'].indexOf(value) >= 0
+      }
+    }
+  },
   data() {
     return {
       visible: false
@@ -31,15 +45,36 @@ export default {
       }
     },
     positionContent() {
-      document.body.appendChild(this.$refs.contentWrapper)
-      let {
+      const { contentWrapper, trigger } = this.$refs
+      document.body.appendChild(contentWrapper)
+      const {
         top,
         left,
         height,
-        width
-      } = this.$refs.trigger.getBoundingClientRect()
-      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-      this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+        width,
+        right
+      } = trigger.getBoundingClientRect()
+      const { height: height2 } = contentWrapper.getBoundingClientRect()
+      let positions = {
+        top: {
+          top: top + window.scrollY,
+          left: left + window.scrollX
+        },
+        left: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: left + window.scrollX
+        },
+        right: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: right + window.scrollX
+        },
+        bottom: {
+          top: top + height + window.scrollY,
+          left: left + window.scrollX
+        }
+      }
+      contentWrapper.style.left = positions[this.position].left + 'px'
+      contentWrapper.style.top = positions[this.position].top + 'px'
     },
     onShow() {
       this.visible = true
@@ -76,11 +111,8 @@ $border-radius: 4px;
   position: absolute;
   border: 1px solid $border-color;
   border-radius: $border-radius;
-  // box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
-  transform: translateY(-100%);
   padding: 0.5em 1em;
-  margin-top: -10px;
   max-width: 20em;
   background: white;
   word-break: break-all;
@@ -90,17 +122,72 @@ $border-radius: 4px;
     display: block;
     width: 0;
     height: 0;
-    border: 10px solid transparent;
     position: absolute;
-    left: 10px;
+    border: 10px solid transparent;
   }
-  &::before {
-    border-top-color: black;
-    top: 100%;
+  &.position-top {
+    transform: translateY(-100%);
+    margin-top: -10px;
+    &::before,
+    &::after {
+      left: 10px;
+    }
+    &::before {
+      border-top-color: black;
+      top: 100%;
+    }
+    &::after {
+      border-top-color: white;
+      top: calc(100% - 1px);
+    }
   }
-  &::after {
-    border-top-color: white;
-    top: calc(100% - 1px);
+  &.position-bottom {
+    margin-top: 10px;
+    &::before,
+    &::after {
+      left: 10px;
+    }
+    &::before {
+      border-bottom-color: black;
+      bottom: 100%;
+    }
+    &::after {
+      border-bottom-color: white;
+      bottom: calc(100% - 1px);
+    }
+  }
+  &.position-left {
+    transform: translateX(-100%);
+    margin-left: -10px;
+    &::before,
+    &::after {
+      transform: translateY(-50%);
+      top: 50%;
+    }
+    &::before {
+      border-left-color: black;
+      left: 100%;
+    }
+    &::after {
+      border-left-color: white;
+      left: calc(100% - 1px);
+    }
+  }
+  &.position-right {
+    margin-left: 10px;
+    &::before,
+    &::after {
+      transform: translateY(-50%);
+      top: 50%;
+    }
+    &::before {
+      border-right-color: black;
+      right: 100%;
+    }
+    &::after {
+      border-right-color: white;
+      right: calc(100% - 1px);
+    }
   }
 }
 </style>

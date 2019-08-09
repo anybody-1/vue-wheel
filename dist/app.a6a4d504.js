@@ -14172,8 +14172,22 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   name: 'GuluPopover',
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'left', 'bottom', 'right'].indexOf(value) >= 0;
+      }
+    }
+  },
   data: function data() {
     return {
       visible: false
@@ -14186,16 +14200,41 @@ var _default = {
       }
     },
     positionContent: function positionContent() {
-      document.body.appendChild(this.$refs.contentWrapper);
+      var _this$$refs = this.$refs,
+          contentWrapper = _this$$refs.contentWrapper,
+          trigger = _this$$refs.trigger;
+      document.body.appendChild(contentWrapper);
 
-      var _this$$refs$trigger$g = this.$refs.trigger.getBoundingClientRect(),
-          top = _this$$refs$trigger$g.top,
-          left = _this$$refs$trigger$g.left,
-          height = _this$$refs$trigger$g.height,
-          width = _this$$refs$trigger$g.width;
+      var _trigger$getBoundingC = trigger.getBoundingClientRect(),
+          top = _trigger$getBoundingC.top,
+          left = _trigger$getBoundingC.left,
+          height = _trigger$getBoundingC.height,
+          width = _trigger$getBoundingC.width,
+          right = _trigger$getBoundingC.right;
 
-      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-      this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
+      var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
+          height2 = _contentWrapper$getBo.height;
+
+      var positions = {
+        top: {
+          top: top + window.scrollY,
+          left: left + window.scrollX
+        },
+        left: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: left + window.scrollX
+        },
+        right: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: right + window.scrollX
+        },
+        bottom: {
+          top: top + height + window.scrollY,
+          left: left + window.scrollX
+        }
+      };
+      contentWrapper.style.left = positions[this.position].left + 'px';
+      contentWrapper.style.top = positions[this.position].top + 'px';
     },
     onShow: function onShow() {
       var _this = this;
@@ -14242,7 +14281,11 @@ exports.default = _default;
       _vm.visible
         ? _c(
             "div",
-            { ref: "contentWrapper", staticClass: "content-wrapper" },
+            {
+              ref: "contentWrapper",
+              staticClass: "content-wrapper",
+              class: ["position-" + _vm.position]
+            },
             [_vm._t("content")],
             2
           )
@@ -14421,7 +14464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51610" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
