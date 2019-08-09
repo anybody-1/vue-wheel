@@ -14290,6 +14290,14 @@ var _default = {
       this.$refs.popover.addEventListener('mouseenter', this.onShow);
       this.$refs.popover.addEventListener('mouseleave', this.onClose);
     }
+  },
+  destroyed: function destroyed() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.removeEventListener('click', this.showContent);
+    } else {
+      this.$refs.popover.removeEventListener('mouseenter', this.onShow);
+      this.$refs.popover.removeEventListener('mouseleave', this.onClose);
+    }
   }
 };
 exports.default = _default;
