@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="showContent" ref="popover">
+  <div class="popover" ref="popover">
     <div
       ref="contentWrapper"
       v-if="visible"
@@ -23,11 +23,34 @@ export default {
       validator(value) {
         return ['top', 'left', 'bottom', 'right'].indexOf(value) >= 0
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0
+      }
     }
   },
   data() {
     return {
       visible: false
+    }
+  },
+  computed: {
+    openEvent() {
+      if (this.trigger === 'click') {
+        return 'click'
+      } else {
+        return 'mouseenter'
+      }
+    },
+    closeEvent() {
+      if (this.trigger === 'click') {
+        return 'click'
+      } else {
+        return 'mouseleave'
+      }
     }
   },
   methods: {
@@ -95,6 +118,14 @@ export default {
           this.onShow()
         }
       }
+    }
+  },
+  mounted() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.addEventListener('click', this.showContent)
+    } else {
+      this.$refs.popover.addEventListener('mouseenter', this.onShow)
+      this.$refs.popover.addEventListener('mouseleave', this.onClose)
     }
   }
 }

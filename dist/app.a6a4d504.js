@@ -14186,12 +14186,35 @@ var _default = {
       validator: function validator(value) {
         return ['top', 'left', 'bottom', 'right'].indexOf(value) >= 0;
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator: function validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0;
+      }
     }
   },
   data: function data() {
     return {
       visible: false
     };
+  },
+  computed: {
+    openEvent: function openEvent() {
+      if (this.trigger === 'click') {
+        return 'click';
+      } else {
+        return 'mouseenter';
+      }
+    },
+    closeEvent: function closeEvent() {
+      if (this.trigger === 'click') {
+        return 'click';
+      } else {
+        return 'mouseleave';
+      }
+    }
   },
   methods: {
     onClickDocument: function onClickDocument(e) {
@@ -14259,6 +14282,14 @@ var _default = {
         }
       }
     }
+  },
+  mounted: function mounted() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.addEventListener('click', this.showContent);
+    } else {
+      this.$refs.popover.addEventListener('mouseenter', this.onShow);
+      this.$refs.popover.addEventListener('mouseleave', this.onClose);
+    }
   }
 };
 exports.default = _default;
@@ -14274,31 +14305,27 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "popover", staticClass: "popover", on: { click: _vm.showContent } },
-    [
-      _vm.visible
-        ? _c(
-            "div",
-            {
-              ref: "contentWrapper",
-              staticClass: "content-wrapper",
-              class: ["position-" + _vm.position]
-            },
-            [_vm._t("content")],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "span",
-        { ref: "trigger", staticStyle: { display: "inline-block" } },
-        [_vm._t("default")],
-        2
-      )
-    ]
-  )
+  return _c("div", { ref: "popover", staticClass: "popover" }, [
+    _vm.visible
+      ? _c(
+          "div",
+          {
+            ref: "contentWrapper",
+            staticClass: "content-wrapper",
+            class: ["position-" + _vm.position]
+          },
+          [_vm._t("content")],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "span",
+      { ref: "trigger", staticStyle: { display: "inline-block" } },
+      [_vm._t("default")],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -14464,7 +14491,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65331" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
