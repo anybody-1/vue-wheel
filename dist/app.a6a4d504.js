@@ -14375,6 +14375,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -14383,8 +14388,25 @@ exports.default = void 0;
 var _default = {
   name: 'GuluCollapse',
   props: {
-    title: String,
-    required: true
+    single: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      eventBus: new _vue.default()
+    };
+  },
+  provide: function provide() {
+    if (this.single) {
+      return {
+        eventBus: this.eventBus
+      };
+    }
+  },
+  mounted: function mounted() {
+    console.log(this.singleOnly);
   }
 };
 exports.default = _default;
@@ -14435,7 +14457,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/collapse-item.vue":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/collapse-item.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14458,15 +14480,31 @@ var _default = {
       required: true
     }
   },
+  inject: ['eventBus'],
   data: function data() {
     return {
       open: false
     };
   },
   methods: {
-    trigger: function trigger() {
-      this.open = !this.open;
+    toggle: function toggle() {
+      if (this.open) {
+        this.open = false;
+      } else {
+        console.log(this.eventBus);
+        this.eventBus && this.eventBus.$emit('update:selected', this);
+        this.open = true;
+      }
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.eventBus && this.eventBus.$on('update:selected', function (vm) {
+      if (vm !== _this) {
+        _this.open = false;
+      }
+    });
   }
 };
 exports.default = _default;
@@ -14483,7 +14521,7 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "collapse-item" }, [
-    _c("div", { staticClass: "title", on: { click: _vm.trigger } }, [
+    _c("div", { staticClass: "title", on: { click: _vm.toggle } }, [
       _vm._v(_vm._s(_vm.title))
     ]),
     _vm._v(" "),

@@ -4,11 +4,29 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 export default {
   name: 'GuluCollapse',
   props: {
-    title: String,
-    required: true
+    single: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      eventBus: new Vue()
+    }
+  },
+  provide() {
+    if (this.single) {
+      return {
+        eventBus: this.eventBus
+      }
+    }
+  },
+  mounted() {
+    console.log(this.singleOnly)
   }
 }
 </script>
