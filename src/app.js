@@ -48,7 +48,8 @@ new Vue({
   data: {
     loading1: false,
     message: '其他',
-    selectedKey: 'sport'
+    selectedKey: 'sport',
+    selectLabel: '3'
   },
   created() {},
   methods: {

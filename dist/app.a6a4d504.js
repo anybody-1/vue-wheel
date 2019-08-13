@@ -14407,7 +14407,12 @@ var _default = {
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.eventBus.$emit('update:selected', this.selected);
+    this.eventBus.$on('update:selected', function (name) {
+      _this.$emit('update:selected', name);
+    });
   }
 };
 exports.default = _default;
@@ -14670,7 +14675,8 @@ new _vue.default({
   data: {
     loading1: false,
     message: '其他',
-    selectedKey: 'sport'
+    selectedKey: 'sport',
+    selectLabel: '3'
   },
   created: function created() {},
   methods: {
