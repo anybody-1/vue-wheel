@@ -14391,6 +14391,9 @@ var _default = {
     single: {
       type: Boolean,
       default: false
+    },
+    selected: {
+      type: String
     }
   },
   data: function data() {
@@ -14399,14 +14402,12 @@ var _default = {
     };
   },
   provide: function provide() {
-    if (this.single) {
-      return {
-        eventBus: this.eventBus
-      };
-    }
+    return {
+      eventBus: this.eventBus
+    };
   },
   mounted: function mounted() {
-    console.log(this.singleOnly);
+    this.eventBus.$emit('update:selected', this.selected);
   }
 };
 exports.default = _default;
@@ -14478,6 +14479,10 @@ var _default = {
     title: {
       type: String,
       required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   },
   inject: ['eventBus'],
@@ -14491,18 +14496,24 @@ var _default = {
       if (this.open) {
         this.open = false;
       } else {
-        console.log(this.eventBus);
-        this.eventBus && this.eventBus.$emit('update:selected', this);
-        this.open = true;
+        this.eventBus && this.eventBus.$emit('update:selected', this.name);
       }
+    },
+    close: function close() {
+      this.open = false;
+    },
+    show: function show() {
+      this.open = true;
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.eventBus && this.eventBus.$on('update:selected', function (vm) {
-      if (vm !== _this) {
-        _this.open = false;
+    this.eventBus && this.eventBus.$on('update:selected', function (name) {
+      if (name !== _this.name) {
+        _this.close();
+      } else {
+        _this.show();
       }
     });
   }
@@ -14702,7 +14713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64237" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57033" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
