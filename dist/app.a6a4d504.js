@@ -14218,7 +14218,7 @@ var _default = {
   },
   methods: {
     onClickDocument: function onClickDocument(e) {
-      if (!this.$refs.popover || !(this.$refs.popover.contains(e.target) || this.$refs.popover === e.target || this.$refs.contentWrapper.contains(e.target)) || !this.$refs.contentWrapper.contains(e.target)) {
+      if (!this.$refs.popover || !(this.$refs.popover.contains(e.target) || this.$refs.popover === e.target || this.$refs.contentWrapper && this.$refs.contentWrapper.contains(e.target)) || !(this.$refs.contentWrapper && this.$refs.contentWrapper.contains(e.target))) {
         this.onClose();
       }
     },
@@ -14266,12 +14266,12 @@ var _default = {
       setTimeout(function () {
         _this.positionContent();
 
-        document.addEventListener('click', _this.onClickDocument);
+        document.addEventListener(_this.openEvent, _this.onClickDocument);
       }, 0);
     },
     onClose: function onClose() {
       this.visible = false;
-      document.removeEventListener('click', this.onClickDocument);
+      document.removeEventListener(this.closeEvent, this.onClickDocument);
     },
     showContent: function showContent(e) {
       if (this.$refs.trigger.contains(e.target)) {

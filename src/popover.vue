@@ -60,9 +60,13 @@ export default {
         !(
           this.$refs.popover.contains(e.target) ||
           this.$refs.popover === e.target ||
-          this.$refs.contentWrapper.contains(e.target)
+          (this.$refs.contentWrapper &&
+            this.$refs.contentWrapper.contains(e.target))
         ) ||
-        !this.$refs.contentWrapper.contains(e.target)
+        !(
+          this.$refs.contentWrapper &&
+          this.$refs.contentWrapper.contains(e.target)
+        )
       ) {
         this.onClose()
       }
@@ -103,12 +107,12 @@ export default {
       this.visible = true
       setTimeout(() => {
         this.positionContent()
-        document.addEventListener('click', this.onClickDocument)
+        document.addEventListener(this.openEvent, this.onClickDocument)
       }, 0)
     },
     onClose() {
       this.visible = false
-      document.removeEventListener('click', this.onClickDocument)
+      document.removeEventListener(this.closeEvent, this.onClickDocument)
     },
     showContent(e) {
       if (this.$refs.trigger.contains(e.target)) {
