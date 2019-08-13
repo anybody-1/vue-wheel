@@ -14393,7 +14393,7 @@ var _default = {
       default: false
     },
     selected: {
-      type: String
+      type: Array
     }
   },
   data: function data() {
@@ -14410,8 +14410,27 @@ var _default = {
     var _this = this;
 
     this.eventBus.$emit('update:selected', this.selected);
-    this.eventBus.$on('update:selected', function (name) {
-      _this.$emit('update:selected', name);
+    this.eventBus.$on('update:addSelected', function (name) {
+      var nameCopy = JSON.parse(JSON.stringify(_this.selected));
+
+      if (_this.single) {
+        nameCopy = [name];
+      } else {
+        nameCopy.push(name);
+      }
+
+      _this.eventBus.$emit('update:selected', nameCopy);
+
+      _this.$emit('update:selected', nameCopy);
+    });
+    this.eventBus.$on('update:removeSelected', function (name) {
+      var nameCopy = JSON.parse(JSON.stringify(_this.selected));
+      var index = nameCopy.indexOf(name);
+      nameCopy.splice(index, 1);
+
+      _this.eventBus.$emit('update:selected', nameCopy);
+
+      _this.$emit('update:selected', nameCopy);
     });
   }
 };
@@ -14499,26 +14518,20 @@ var _default = {
   methods: {
     toggle: function toggle() {
       if (this.open) {
-        this.open = false;
+        this.eventBus && this.eventBus.$emit('update:removeSelected', this.name);
       } else {
-        this.eventBus && this.eventBus.$emit('update:selected', this.name);
+        this.eventBus && this.eventBus.$emit('update:addSelected', this.name);
       }
-    },
-    close: function close() {
-      this.open = false;
-    },
-    show: function show() {
-      this.open = true;
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.eventBus && this.eventBus.$on('update:selected', function (name) {
-      if (name !== _this.name) {
-        _this.close();
+    this.eventBus && this.eventBus.$on('update:selected', function (names) {
+      if (names.indexOf(_this.name) >= 0) {
+        _this.open = true;
       } else {
-        _this.show();
+        _this.open = false;
       }
     });
   }
@@ -14676,7 +14689,7 @@ new _vue.default({
     loading1: false,
     message: '其他',
     selectedKey: 'sport',
-    selectLabel: '3'
+    selectLabel: ['3']
   },
   created: function created() {},
   methods: {

@@ -49,7 +49,7 @@ new Vue({
     loading1: false,
     message: '其他',
     selectedKey: 'sport',
-    selectLabel: '3'
+    selectLabel: ['3']
   },
   created() {},
   methods: {

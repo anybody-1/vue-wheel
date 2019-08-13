@@ -13,7 +13,7 @@ export default {
       default: false
     },
     selected: {
-      type: String
+      type: Array
     }
   },
   data() {
@@ -28,8 +28,22 @@ export default {
   },
   mounted() {
     this.eventBus.$emit('update:selected', this.selected)
-    this.eventBus.$on('update:selected', name => {
-      this.$emit('update:selected', name)
+    this.eventBus.$on('update:addSelected', name => {
+      let nameCopy = JSON.parse(JSON.stringify(this.selected))
+      if (this.single) {
+        nameCopy = [name]
+      } else {
+        nameCopy.push(name)
+      }
+      this.eventBus.$emit('update:selected', nameCopy)
+      this.$emit('update:selected', nameCopy)
+    })
+    this.eventBus.$on('update:removeSelected', name => {
+      let nameCopy = JSON.parse(JSON.stringify(this.selected))
+      let index = nameCopy.indexOf(name)
+      nameCopy.splice(index, 1)
+      this.eventBus.$emit('update:selected', nameCopy)
+      this.$emit('update:selected', nameCopy)
     })
   }
 }
