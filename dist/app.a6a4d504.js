@@ -12547,6 +12547,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'GuluButton',
   components: {
@@ -12563,6 +12564,19 @@ var _default = {
       default: 'left',
       validator: function validator(value) {
         return value === 'left' || value === 'right';
+      }
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    onClick: function onClick() {
+      if (!this.disabled && !this.loading) {
+        this.$emit('click');
+      } else {
+        return;
       }
     }
   }
@@ -12585,11 +12599,8 @@ exports.default = _default;
     {
       staticClass: "g-button",
       class: [!_vm.iconPosition ? "icon-left" : "icon-" + _vm.iconPosition],
-      on: {
-        click: function($event) {
-          return _vm.$emit("click")
-        }
-      }
+      attrs: { disabled: _vm.disabled },
+      on: { click: _vm.onClick }
     },
     [
       _vm.loading
