@@ -2,7 +2,7 @@
   <button
     :disabled="disabled"
     class="g-button"
-    :class="[!iconPosition?'icon-left':`icon-${iconPosition}`]"
+    :class="[!iconPosition?'icon-left':`icon-${iconPosition}`, {'loading': this.loading}]"
     @click="onClick"
   >
     <g-icon name="loading" class="loading icon" v-if="loading"></g-icon>

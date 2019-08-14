@@ -12598,7 +12598,10 @@ exports.default = _default;
     "button",
     {
       staticClass: "g-button",
-      class: [!_vm.iconPosition ? "icon-left" : "icon-" + _vm.iconPosition],
+      class: [
+        !_vm.iconPosition ? "icon-left" : "icon-" + _vm.iconPosition,
+        { loading: this.loading }
+      ],
       attrs: { disabled: _vm.disabled },
       on: { click: _vm.onClick }
     },

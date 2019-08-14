@@ -4,9 +4,7 @@
     <g-button icon="settings">Icon按钮</g-button>
     <g-button :loading="true">loading按钮</g-button>
     <g-button disabled>禁用按钮</g-button>
-    <pre>
-      <code>{{ content }}</code>
-    </pre>
+    <pre><code>{{ content }}</code></pre>
   </div>
 </template>
 <script>
@@ -23,6 +21,8 @@ export default {
       <g-button :loading="true">loading按钮</g-button>
       <g-button disabled>禁用按钮</g-button>
       `
+        .replace(/\t+| +/g, '')
+        .trim()
     }
   }
 }
