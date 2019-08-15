@@ -911,6 +911,7 @@
   left: 50%;
   position: fixed;
   transform: translateX(-50%);
+  z-index: 30;
 }
 .wrapper.position-top[data-v-f78b65] {
     top: 0;

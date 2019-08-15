@@ -122,7 +122,20 @@ export default {
           this.onShow()
         }
       }
-    }
+    },
+    putBackContent () {
+      const {contentWrapper, popover} = this.$refs
+      if (!contentWrapper) {return}
+      popover.appendChild(contentWrapper)
+    },
+    removePopoverListeners() {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click', this.showContent)
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.onShow)
+        this.$refs.popover.removeEventListener('mouseleave', this.onClose)
+      }
+      }
   },
   mounted() {
     if (this.trigger === 'click') {
@@ -132,13 +145,9 @@ export default {
       this.$refs.popover.addEventListener('mouseleave', this.onClose)
     }
   },
-  destroyed() {
-    if (this.trigger === 'click') {
-      this.$refs.popover.removeEventListener('click', this.showContent)
-    } else {
-      this.$refs.popover.removeEventListener('mouseenter', this.onShow)
-      this.$refs.popover.removeEventListener('mouseleave', this.onClose)
-    }
+  beforeDestroy() {
+    this.putBackContent()
+    this.removePopoverListeners()
   }
 }
 </script>

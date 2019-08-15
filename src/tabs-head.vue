@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-head">
+  <div class="tabs-head" ref="head">
     <slot></slot>
     <div class="line" ref="line"></div>
     <div class="action-wrapper">
@@ -13,9 +13,10 @@ export default {
   inject: ['eventBus'],
   mounted() {
     this.eventBus.$on('update:selected', (name, vm) => {
-      let { width, height, left, top } = vm.$el.getBoundingClientRect()
+      let { width, left } = vm.$el.getBoundingClientRect()
+      let { left: left1 } = this.$refs.head.getBoundingClientRect()
       this.$refs.line.style.width = `${width}px`
-      this.$refs.line.style.left = `${left}px`
+      this.$refs.line.style.left = `${left - left1}px`
     })
   }
 }
