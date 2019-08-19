@@ -23,23 +23,31 @@
   </div>
 </template>
 <script>
-import GIcon from '../../../src/icon'
-import GTabs from '../../../src/tabs'
-import GButton from '../../../src/button'
-import GTabsBody from '../../../src/tabs-body'
-import GTabsHead from '../../../src/tabs-head'
-import GTabsItem from '../../../src/tabs-item'
-import GTabsPane from '../../../src/tabs-pane'
+import Vue from 'vue'
+Vue.component('GIcon', () => import('../../../src/icon'))
+Vue.component('GTabs', () => import('../../../src/tabs'))
+Vue.component('GButton', () => import('../../../src/button'))
+Vue.component('GTabsBody', () => import('../../../src/tabs-body'))
+Vue.component('GTabsHead', () => import('../../../src/tabs-head'))
+Vue.component('GTabsItem', () => import('../../../src/tabs-item'))
+Vue.component('GTabsPane', () => import('../../../src/tabs-pane'))
+// import GIcon from '../../../src/icon'
+// import GTabs from '../../../src/tabs'
+// import GButton from '../../../src/button'
+// import GTabsBody from '../../../src/tabs-body'
+// import GTabsHead from '../../../src/tabs-head'
+// import GTabsItem from '../../../src/tabs-item'
+// import GTabsPane from '../../../src/tabs-pane'
 export default {
-  components: {
-    GTabs,
-    GTabsBody,
-    GTabsHead,
-    GTabsItem,
-    GTabsPane,
-    GIcon,
-    GButton
-  },
+  // components: {
+  //   GTabs,
+  //   GTabsBody,
+  //   GTabsHead,
+  //   GTabsItem,
+  //   GTabsPane,
+  //   GIcon,
+  //   GButton
+  // },
   data() {
     return {
       content: `

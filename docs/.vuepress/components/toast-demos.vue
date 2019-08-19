@@ -19,12 +19,15 @@
   </div>
 </template>
 <script>
-import plugin from '../../../src/plugin'
-import GButton from '../../../src/button'
+import Plugin from '../../../src/plugin'
+// import GButton from '../../../src/button'
 import Vue from 'vue'
-Vue.use(plugin)
+Vue.component('GButton', () => import('../../../src/button'))
+
+Vue.use(Plugin)
+
 export default {
-  components: { GButton },
+  // components: { GButton },
   data() {
     return {
       content: `

@@ -13675,7 +13675,7 @@ function createToast(_ref) {
   var toast = new constractor({
     propsData: propsData
   });
-  toast.$slots.default = [message];
+  toast.$slots.default = message;
   toast.$mount();
   toast.$on('close', clearCurrentToast);
   document.body.appendChild(toast.$el);
@@ -14717,7 +14717,7 @@ new _vue.default({
   el: '#app',
   data: {
     loading1: false,
-    message: '其他',
+    message: 4,
     selectedKey: 'sport',
     selectLabel: ['3']
   },
@@ -14762,7 +14762,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50175" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49933" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

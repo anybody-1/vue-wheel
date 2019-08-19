@@ -61,10 +61,13 @@
   </div>
 </template>
 <script>
-import GPopover from '../../../src/popover'
-import GButton from '../../../src/button'
+import Vue from 'vue'
+Vue.component('GPopover', () => import('../../../src/popover'))
+Vue.component('GButton', () => import('../../../src/button'))
+// import GPopover from '../../../src/popover'
+// import GButton from '../../../src/button'
 export default {
-  components: { GPopover, GButton },
+  // components: { GPopover, GButton },
   data() {
     return {
       clickContent: `

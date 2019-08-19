@@ -47,7 +47,7 @@ new Vue({
   el: '#app',
   data: {
     loading1: false,
-    message: '其他',
+    message: 4,
     selectedKey: 'sport',
     selectLabel: ['3']
   },

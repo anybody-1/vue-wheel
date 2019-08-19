@@ -10,9 +10,11 @@
   </div>
 </template>
 <script>
-import GButton from '../../../src/button'
+import Vue from 'vue'
+Vue.component('GButton', () => import('../../../src/button'))
+// import GButton from '../../../src/button'
 export default {
-  components: { GButton },
+  // components: { GButton },
   data() {
     return {
       content: `
