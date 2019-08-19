@@ -1,12 +1,12 @@
 <template>
   <button
     :disabled="disabled"
-    class="g-button"
+    class="lv-button"
     :class="[!iconPosition?'icon-left':`icon-${iconPosition}`, {'loading': this.loading}]"
     @click="onClick"
   >
-    <g-icon name="loading" class="loading icon" v-if="loading"></g-icon>
-    <g-icon v-if="icon&&!loading" :name="icon" class="icon"></g-icon>
+    <lv-icon name="loading" class="loading icon" v-if="loading"></lv-icon>
+    <lv-icon v-if="icon&&!loading" :name="icon" class="icon"></lv-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -17,7 +17,7 @@ import Icon from './icon'
 export default {
   name: 'GuluButton',
   components: {
-    'g-icon': Icon
+    'lv-icon': Icon
   },
   props: {
     icon: {},
@@ -64,7 +64,7 @@ $button-active-background: #eee;
     transform: rotate(360deg);
   }
 }
-.g-button {
+.lv-button {
   font-size: $font-size;
   height: $button-height;
   padding: 0 1em;

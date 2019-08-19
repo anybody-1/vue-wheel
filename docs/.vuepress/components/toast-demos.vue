@@ -1,19 +1,19 @@
 <template>
   <div>
     <h3>简单用法-3秒自动关闭</h3>
-    <g-button @click="$toast('上边弹出',{position: 'top'})">top</g-button>
-    <g-button @click="$toast('底部弹出',{position: 'bottom'})">bottom</g-button>
-    <g-button @click="$toast('中间弹出',{position: 'middle'})">middle</g-button>
+    <lv-button @click="$toast('上边弹出',{position: 'top'})">top</lv-button>
+    <lv-button @click="$toast('底部弹出',{position: 'bottom'})">bottom</lv-button>
+    <lv-button @click="$toast('中间弹出',{position: 'middle'})">middle</lv-button>
     <h3>代码</h3>
     <pre><code>{{content}}</code></pre>
 
     <h3>展示HTML</h3>
-    <g-button @click="showToast">HTML</g-button>
+    <lv-button @click="showToast">HTML</lv-button>
     <h3>代码</h3>
     <pre><code>{{contentHtml}}</code></pre>
 
     <h3>设置closeButton</h3>
-    <g-button @click="setCloseButton">设置关闭按钮</g-button>
+    <lv-button @click="setCloseButton">设置关闭按钮</lv-button>
     <h3>代码</h3>
     <pre><code>{{closeContentHtml}}</code></pre>
   </div>
@@ -22,7 +22,7 @@
 import Plugin from '../../../src/plugin'
 // import GButton from '../../../src/button'
 import Vue from 'vue'
-Vue.component('GButton', () => import('../../../src/button'))
+Vue.component('LvButton', () => import('../../../src/button'))
 
 Vue.use(Plugin)
 
@@ -31,14 +31,14 @@ export default {
   data() {
     return {
       content: `
-        <g-button @click="$toast('上边弹出',{position: 'top'})">top</g-button>
-        <g-button @click="$toast('底部弹出',{position: 'bottom'})">bottom</g-button>
-        <g-button @click="$toast('中间弹出',{position: 'middle'})">middle</g-button>
+        <lv-button @click="$toast('上边弹出',{position: 'top'})">top</lv-button>
+        <lv-button @click="$toast('底部弹出',{position: 'bottom'})">bottom</lv-button>
+        <lv-button @click="$toast('中间弹出',{position: 'middle'})">middle</lv-button>
       `
         .replace(/^ {8}/gm, '')
         .trim(),
       contentHtml: `
-        <g-button @click="showToast">HTML</g-button>
+        <lv-button @click="showToast">HTML</lv-button>
         methods: {
           showToast() {
             this.$toast('<strong style="color: yellow;">正式通知你</strong>', {
@@ -50,7 +50,7 @@ export default {
         .replace(/^ {8}/gm, '')
         .trim(),
       closeContentHtml: `
-        <g-button @click="setCloseButton">设置关闭按钮</g-button>
+        <lv-button @click="setCloseButton">设置关闭按钮</lv-button>
         methods: {
           setCloseButton(position) {
             this.$toast('发工资了,兄弟', {

@@ -1,10 +1,11 @@
-.g-icon[data-v-422f93] {
+.lv-icon[data-v-422f93] {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
 }
+
 @keyframes spin-data-v-c2968b {
 0% {
     transform: rotate(0deg);
@@ -13,42 +14,49 @@
     transform: rotate(360deg);
 }
 }
-.g-button[data-v-c2968b] {
-  font-size: var(--font-size);
-  height: var(--button-height);
+.lv-button[data-v-c2968b] {
+  font-size: 14px;
+  height: 32px;
   padding: 0 1em;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  background: var(--button-background);
+  border-radius: 4px;
+  border: 1px solid #999;
+  background: white;
 }
-.g-button[data-v-c2968b]:hover {
-  border-color: var(--border-color-hover);
+.lv-button[data-v-c2968b]:hover {
+    border-color: #666;
 }
-.g-button[data-v-c2968b]:active {
-  background-color: var(--button-active-background);
+.lv-button[data-v-c2968b]:active {
+    background-color: #eee;
 }
-.g-button[data-v-c2968b]:focus {
-  outline: none;
+.lv-button[data-v-c2968b]:focus {
+    outline: none;
 }
-.g-button > .icon[data-v-c2968b] {
-  order: 1;
-  margin-right: 0.1em;
+.lv-button > .icon[data-v-c2968b] {
+    order: 1;
+    margin-right: 0.1em;
 }
-.g-button > .content[data-v-c2968b] {
-  order: 2;
+.lv-button > .content[data-v-c2968b] {
+    order: 2;
 }
-.g-button.icon-right > .icon[data-v-c2968b] {
-  order: 2;
-  margin-left: 0.1em;
-  margin-right: 0;
+.lv-button.icon-right > .icon[data-v-c2968b] {
+    order: 2;
+    margin-left: 0.1em;
+    margin-right: 0;
 }
-.g-button.icon-right > .content[data-v-c2968b] {
-  order: 1;
+.lv-button.icon-right > .content[data-v-c2968b] {
+    order: 1;
 }
-.g-button .loading[data-v-c2968b] {
-  animation: spin-data-v-c2968b 1s infinite linear;
+.lv-button .loading[data-v-c2968b] {
+    animation: spin-data-v-c2968b 1s infinite linear;
 }
+.lv-button[disabled][data-v-c2968b] {
+    border-color: #bbb;
+    color: #bbb;
+    background-color: white;
+    cursor: not-allowed;
+}
+

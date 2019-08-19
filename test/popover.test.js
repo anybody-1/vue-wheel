@@ -2,7 +2,7 @@ const expect = chai.expect
 import Vue from 'vue'
 import Popover from '../src/popover'
 
-Vue.component('g-popover', Popover)
+Vue.component('lv-popover', Popover)
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
@@ -14,12 +14,12 @@ describe('Popover', () => {
   it('可以设置position.', () => {
     let div = document.createElement('div')
     div.innerHTML = `
-    <g-popover ref='test'>
+    <lv-popover ref='test'>
       <template slot='content'>
         <span>上边内容</span>
       </template>
       <button>上边</button>
-    </g-popover>
+    </lv-popover>
     `
     document.body.appendChild(div)
     let vm = new Vue({
@@ -34,12 +34,12 @@ describe('Popover', () => {
   xit('可以设置trigger', () => {
     let div = document.createElement('div')
     div.innerHTML = `
-    <g-popover ref='test' trigger='hover'>
+    <lv-popover ref='test' trigger='hover'>
       <template slot='content'>
         <span>上边内容</span>
       </template>
       <button>上边</button>
-    </g-popover>
+    </lv-popover>
     `
     document.body.appendChild(div)
     let vm = new Vue({

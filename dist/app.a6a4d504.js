@@ -12468,6 +12468,8 @@ require("./svg");
 //
 //
 //
+//
+//
 var _default = {
   name: 'GuluIcon',
   props: ['name']
@@ -12485,7 +12487,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("svg", { staticClass: "g-icon" }, [
+  return _c("svg", { staticClass: "lv-icon" }, [
     _c("use", { attrs: { "xlink:href": "#i-" + _vm.name } })
   ])
 }
@@ -12551,7 +12553,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = {
   name: 'GuluButton',
   components: {
-    'g-icon': _icon.default
+    'lv-icon': _icon.default
   },
   props: {
     icon: {},
@@ -12597,7 +12599,7 @@ exports.default = _default;
   return _c(
     "button",
     {
-      staticClass: "g-button",
+      staticClass: "lv-button",
       class: [
         !_vm.iconPosition ? "icon-left" : "icon-" + _vm.iconPosition,
         { loading: this.loading }
@@ -12607,14 +12609,14 @@ exports.default = _default;
     },
     [
       _vm.loading
-        ? _c("g-icon", {
+        ? _c("lv-icon", {
             staticClass: "loading icon",
             attrs: { name: "loading" }
           })
         : _vm._e(),
       _vm._v(" "),
       _vm.icon && !_vm.loading
-        ? _c("g-icon", { staticClass: "icon", attrs: { name: _vm.icon } })
+        ? _c("lv-icon", { staticClass: "icon", attrs: { name: _vm.icon } })
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
@@ -14671,45 +14673,45 @@ var _collapseItem = _interopRequireDefault(require("./collapse-item"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue.default.component('g-button', _button.default);
+_vue.default.component('lv-button', _button.default);
 
-_vue.default.component('g-icon', _icon.default);
+_vue.default.component('lv-icon', _icon.default);
 
-_vue.default.component('g-row', _row.default);
+_vue.default.component('lv-row', _row.default);
 
-_vue.default.component('g-col', _col.default);
+_vue.default.component('lv-col', _col.default);
 
-_vue.default.component('g-input', _input.default);
+_vue.default.component('lv-input', _input.default);
 
-_vue.default.component('g-layout', _layout.default);
+_vue.default.component('lv-layout', _layout.default);
 
-_vue.default.component('g-content', _content.default);
+_vue.default.component('lv-content', _content.default);
 
-_vue.default.component('g-sider', _sider.default);
+_vue.default.component('lv-sider', _sider.default);
 
-_vue.default.component('g-footer', _footer.default);
+_vue.default.component('lv-footer', _footer.default);
 
-_vue.default.component('g-header', _header.default);
+_vue.default.component('lv-header', _header.default);
 
-_vue.default.component('g-toast', _toast.default);
+_vue.default.component('lv-toast', _toast.default);
 
-_vue.default.component('g-tabs', _tabs.default);
+_vue.default.component('lv-tabs', _tabs.default);
 
-_vue.default.component('g-tabs-body', _tabsBody.default);
+_vue.default.component('lv-tabs-body', _tabsBody.default);
 
-_vue.default.component('g-tabs-head', _tabsHead.default);
+_vue.default.component('lv-tabs-head', _tabsHead.default);
 
-_vue.default.component('g-tabs-pane', _tabsPane.default);
+_vue.default.component('lv-tabs-pane', _tabsPane.default);
 
-_vue.default.component('g-tabs-item', _tabsItem.default);
+_vue.default.component('lv-tabs-item', _tabsItem.default);
 
-_vue.default.component('g-popover', _popover.default);
+_vue.default.component('lv-popover', _popover.default);
 
-_vue.default.component('g-collapse', _collapse.default);
+_vue.default.component('lv-collapse', _collapse.default);
 
-_vue.default.component('g-collapse-item', _collapseItem.default);
+_vue.default.component('lv-collapse-item', _collapseItem.default);
 
-_vue.default.component('g-button-group', _buttonGroup.default);
+_vue.default.component('lv-button-group', _buttonGroup.default);
 
 _vue.default.use(_plugin.default);
 
@@ -14762,7 +14764,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49933" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56910" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

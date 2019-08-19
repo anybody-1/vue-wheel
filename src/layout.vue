@@ -14,10 +14,12 @@ export default {
     }
   },
   mounted() {
-    this.$children.forEach(vm => {
-      if (vm.$options.name === 'GuluSider') {
-        this.layoutClass.hasSider = true
-      }
+    this.$nextTick(() => {
+      this.$children.forEach(vm => {
+        if (vm.$options.name === 'GuluSider') {
+          this.layoutClass.hasSider = true
+        }
+      })
     })
   }
 }
