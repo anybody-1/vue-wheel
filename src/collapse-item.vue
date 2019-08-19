@@ -52,7 +52,7 @@ $border-radius: 4px;
 .collapse-item {
   > .title {
     border: 1px solid $border-color;
-    margin-top: -1px;
+    // margin-top: -1px;
     margin-left: -1px;
     margin-right: -1px;
     min-height: 32px;

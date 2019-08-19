@@ -12,7 +12,7 @@
     <h3>代码</h3>
     <pre><code>{{errorHtml}}</code></pre>
 
-    <h3>双向绑定`v-model`</h3>
+    <h3>双向绑定-v-model</h3>
     <g-input v-model="message"></g-input>
     <g-button @click="message+=1">+1</g-button>
     <div>{{ message }}</div>
@@ -47,7 +47,7 @@ export default {
       `
         .replace(/^ {8}/gm, '')
         .trim(),
-      message: 1
+      message: '测试'
     }
   },
   methods: {
