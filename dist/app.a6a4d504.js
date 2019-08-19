@@ -13164,10 +13164,12 @@ var _default = {
   mounted: function mounted() {
     var _this = this;
 
-    this.$children.forEach(function (vm) {
-      if (vm.$options.name === 'GuluSider') {
-        _this.layoutClass.hasSider = true;
-      }
+    this.$nextTick(function () {
+      _this.$children.forEach(function (vm) {
+        if (vm.$options.name === 'GuluSider') {
+          _this.layoutClass.hasSider = true;
+        }
+      });
     });
   }
 };
@@ -14764,7 +14766,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51320" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
