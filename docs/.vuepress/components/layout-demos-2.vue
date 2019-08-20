@@ -14,12 +14,19 @@
 </template>
 <script>
 import Vue from 'vue'
-Vue.component('LvFooter', () => import('../../../src/footer'))
-Vue.component('LvHeader', () => import('../../../src/header'))
-Vue.component('LvContent', () => import('../../../src/content'))
-Vue.component('LvSider', () => import('../../../src/sider'))
-Vue.component('LvLayout', () => import('../../../src/layout'))
+import LvLayout from '../../../src/layout'
+import LvSider from '../../../src/sider'
+import LvHeader from '../../../src/header'
+import LvContent from '../../../src/content'
+import LvFooter from '../../../src/footer'
+// Vue.component('LvLayout', () => import('../../../src/layout'))
+// Vue.component('LvSider', () => import('../../../src/sider'))
+// Vue.component('LvHeader', () => import('../../../src/header'))
+// Vue.component('LvContent', () => import('../../../src/content'))
+// Vue.component('LvFooter', () => import('../../../src/footer'))
+
 export default {
+  components: { LvLayout, LvSider, LvHeader, LvContent, LvFooter },
   data() {
     return {
       content: `
