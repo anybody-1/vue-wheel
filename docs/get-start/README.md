@@ -2,6 +2,7 @@
 
 ```
 import {Button} from 'wheel-lsy'
+import 'wheel-lsy/dist/index.css'
 import Vue from 'vue'
 
 new Vue({
