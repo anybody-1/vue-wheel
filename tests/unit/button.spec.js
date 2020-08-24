@@ -60,7 +60,6 @@ describe("Button.vue", () => {
       },
     });
     const vm = wrapper.vm;
-
     const callback = sinon.fake();
     vm.$on("click", callback);
     vm.$el.click();
