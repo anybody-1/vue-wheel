@@ -22,6 +22,8 @@ import Popover from "./popover";
 import Collapse from "./collapse";
 import CollapseItem from "./collapse-item";
 import Cascader from "./cascader";
+import Slides from "./slides";
+import SlidesItem from "./slides-item";
 
 Vue.config.productionTip = false;
 Vue.component("lv-button", Button);
@@ -45,6 +47,8 @@ Vue.component("lv-collapse", Collapse);
 Vue.component("lv-collapse-item", CollapseItem);
 Vue.component("lv-button-group", ButtonGroup);
 Vue.component("lv-cascader", Cascader);
+Vue.component("lv-slides", Slides);
+Vue.component("lv-slides-item", SlidesItem);
 Vue.use(Plugin);
 
 new Vue({

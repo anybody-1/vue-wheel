@@ -1,6 +1,6 @@
 <template>
-  <div id="app" style="padding: 100px;">
-    <!-- <lv-collapse :selected.sync='selectLabel'>
+<div id="app" style="padding: 100px;">
+  <!-- <lv-collapse :selected.sync='selectLabel'>
       <lv-collapse-item title="标题1" name='1'>
         内容1
       </lv-collapse-item>
@@ -12,7 +12,6 @@
       </lv-collapse-item>
     </lv-collapse>
     {{ selectLabel }}
-
 
     <lv-collapse single :selected.sync='selectLabel'>
       <lv-collapse-item title="标题1" name='1'>
@@ -26,40 +25,45 @@
       </lv-collapse-item>
     </lv-collapse>-->
 
-    <div style="margin-bottom: 20px;">
-      <lv-popover>
-        <template slot="content">
-          <span>上边内容</span>
-        </template>
-        <lv-button>上边</lv-button>
-      </lv-popover>
-      <lv-popover position="bottom">
-        <template slot="content">
-          <span>下边内容</span>
-        </template>
-        <lv-button>下边</lv-button>
-      </lv-popover>
-      <lv-popover position="left">
-        <template slot="content">
-          <span>左边内容</span>
-        </template>
-        <lv-button>左边</lv-button>
-      </lv-popover>
-      <lv-popover position="right">
-        <template slot="content">
-          <span>右边内容</span>
-        </template>
-        <lv-button>右边</lv-button>
-      </lv-popover>
-    </div>
-    <lv-cascader
-      :source.sync="source"
-      popover-height="200px"
-      :selected.sync="selected"
-      :load="loadData"
-    ></lv-cascader>
-
-    <!-- <div>
+  <!-- <div style="margin-bottom: 20px;">
+    <lv-popover>
+      <template slot="content">
+        <span>上边内容</span>
+      </template>
+      <lv-button>上边</lv-button>
+    </lv-popover>
+    <lv-popover position="bottom">
+      <template slot="content">
+        <span>下边内容</span>
+      </template>
+      <lv-button>下边</lv-button>
+    </lv-popover>
+    <lv-popover position="left">
+      <template slot="content">
+        <span>左边内容</span>
+      </template>
+      <lv-button>左边</lv-button>
+    </lv-popover>
+    <lv-popover position="right">
+      <template slot="content">
+        <span>右边内容</span>
+      </template>
+      <lv-button>右边</lv-button>
+    </lv-popover>
+    </div>-->
+  <!-- <lv-cascader :source.sync="source" popover-height="200px" :selected.sync="selected" :load="loadData"></lv-cascader> -->
+  <lv-slides class="wrapper" width="300px" height="200px" :selected.sync="slideSelected">
+    <lv-slides-item name="1">
+      <div class="box">1</div>
+    </lv-slides-item>
+    <lv-slides-item name="2">
+      <div class="box">2</div>
+    </lv-slides-item>
+    <lv-slides-item name="3">
+      <div class="box">3</div>
+    </lv-slides-item>
+  </lv-slides>
+  <!-- <div>
       <lv-popover trigger='hover'>
         <template slot='content'>
           <span>上边内容</span>
@@ -86,7 +90,7 @@
       </lv-popover>
     </div>-->
 
-    <!-- <lv-tabs :selected.sync='selectedKey'>
+  <!-- <lv-tabs :selected.sync='selectedKey'>
       <lv-tabs-head>
         <template slot='action'>
           <lv-button>操作</lv-button>
@@ -113,7 +117,7 @@
         </lv-tabs-pane>
       </lv-tabs-body>
     </lv-tabs>-->
-    <!-- <lv-button @click="showToast('top')">top</lv-button>
+  <!-- <lv-button @click="showToast('top')">top</lv-button>
     <lv-button @click="showToast('bottom')">bottom</lv-button>
     <lv-button @click="showToast('middle')">middle</lv-button>
     <lv-layout style='height:100vh;'>
@@ -128,7 +132,7 @@
     <lv-row>
       <lv-col span='23' offset='1' :narrow-pc='{span:12,offset:12}'>
     <div class="demo"></div>-->
-    <!-- </lv-col>
+  <!-- </lv-col>
       <lv-col span='24' :narrow-pc='{span:8}'>
         <div class="demo"></div>
       </lv-col>
@@ -144,8 +148,8 @@
       <lv-col span='24' :narrow-pc='{span:8}'>
         <div class="demo"></div>
     </lv-col>-->
-    <!-- </lv-row> -->
-    <!-- <lv-row gutter="20">
+  <!-- </lv-row> -->
+  <!-- <lv-row gutter="20">
         <lv-col
           span="24"
           :ipad="{span:8}"
@@ -174,7 +178,7 @@
           <lv-button icon="right" icon-position="right">下一页</lv-button>
         </lv-button-group>
     </div>-->
-    <!-- <div class="box">
+  <!-- <div class="box">
       <lv-input value="张三"></lv-input>
       <lv-input value="王五" disabled></lv-input>
       <lv-input value="赵六" readonly></lv-input>
@@ -186,11 +190,12 @@
       <lv-input v-model="message"></lv-input>
       <lv-button @click="message+=1">+1</lv-button>
     </div>-->
-  </div>
+</div>
 </template>
 
 <script>
 import db from "./db.js";
+
 function axios(parentId = 0) {
   return new Promise((success, fail) => {
     setTimeout(() => {
@@ -207,21 +212,19 @@ export default {
   name: "demo",
   data() {
     return {
+      slideSelected: "1",
       loading1: false,
       message: 4,
       selectedKey: "sport",
       selected: [],
       selectLabel: ["3"],
-      source: [
-        {
+      source: [{
           value: "zhinan",
           label: "指南",
-          children: [
-            {
+          children: [{
               value: "shejiyuanze",
               label: "设计原则",
-              children: [
-                {
+              children: [{
                   value: "yizhi",
                   label: "一致",
                 },
@@ -242,8 +245,7 @@ export default {
             {
               value: "daohang",
               label: "导航",
-              children: [
-                {
+              children: [{
                   value: "cexiangdaohang",
                   label: "侧向导航",
                 },
@@ -258,12 +260,10 @@ export default {
         {
           value: "zujian",
           label: "组件",
-          children: [
-            {
+          children: [{
               value: "basic",
               label: "Basic",
-              children: [
-                {
+              children: [{
                   value: "layout",
                   label: "Layout 布局",
                 },
@@ -288,8 +288,7 @@ export default {
             {
               value: "form",
               label: "Form",
-              children: [
-                {
+              children: [{
                   value: "radio",
                   label: "Radio 单选框",
                 },
@@ -350,8 +349,7 @@ export default {
             {
               value: "data",
               label: "Data",
-              children: [
-                {
+              children: [{
                   value: "table",
                   label: "Table 表格",
                 },
@@ -380,8 +378,7 @@ export default {
             {
               value: "notice",
               label: "Notice",
-              children: [
-                {
+              children: [{
                   value: "alert",
                   label: "Alert 警告",
                 },
@@ -406,8 +403,7 @@ export default {
             {
               value: "navigation",
               label: "Navigation",
-              children: [
-                {
+              children: [{
                   value: "menu",
                   label: "NavMenu 导航菜单",
                 },
@@ -432,8 +428,7 @@ export default {
             {
               value: "others",
               label: "Others",
-              children: [
-                {
+              children: [{
                   value: "dialog",
                   label: "Dialog 对话框",
                 },
@@ -464,8 +459,7 @@ export default {
         {
           value: "ziyuan",
           label: "资源",
-          children: [
-            {
+          children: [{
               value: "axure",
               label: "Axure Components",
             },
@@ -488,7 +482,9 @@ export default {
     });
   },
   methods: {
-    loadData({ id }, updateSource) {
+    loadData({
+      id
+    }, updateSource) {
       axios(id).then((res) => {
         updateSource(res);
       });
@@ -535,6 +531,7 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+
 .sider {
   background: #333;
   width: 100px;
@@ -548,5 +545,19 @@ body {
 .footer {
   background: #999;
   height: 50px;
+}
+
+.wrapper {
+  margin: 40px;
+}
+
+.box {
+  width: 100%;
+  height: 350px;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 </style>
