@@ -1,17 +1,10 @@
 <template>
-  <div class="cascader" ref="cascader" v-click-outside="close">
-    <div class="result" @click="toggle">{{ result }}</div>
-    <div class="cascader-body" v-if="cascaderVisible">
-      <cascader-item
-        :items="source"
-        :selected="selected"
-        :height="popoverHeight"
-        :loading-item="loadingItem"
-        @update:selected="updateSelected"
-        :load="load"
-      ></cascader-item>
-    </div>
+<div class="cascader" ref="cascader" v-click-outside="close">
+  <div class="result" @click="toggle">{{ result }}</div>
+  <div class="cascader-body" v-if="cascaderVisible">
+    <cascader-item :items="source" :selected="selected" :height="popoverHeight" :loading-item="loadingItem" @update:selected="updateSelected" :load="load"></cascader-item>
   </div>
+</div>
 </template>
 
 <script>
@@ -20,7 +13,9 @@ import CascaderItem from "./cascader-item";
 
 export default {
   name: "cascader",
-  components: { CascaderItem },
+  components: {
+    CascaderItem,
+  },
   props: {
     source: {
       type: Array,
@@ -140,5 +135,5 @@ export default {
     z-index: 1;
     @extend .box-shadow;
   }
-}
-</style>>
+}</style
+>>
